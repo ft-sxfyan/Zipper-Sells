@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zipper Sells | Support</title>
+  <style>
+    /* ===== Global Styling ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+         :root {
+            --primary: #00d4ff;
+            --primary-dark: #0099cc;
+            --secondary: #ff006e;
+            --accent: #ffbe0b;
+            --dark: #0a0e27;
+            --dark-light: #1a1f3a;
+            --dark-card: #252b48;
+            --text: #ffffff;
+            --text-dark: #b8c1ec;
+            --success: #06ffa5;
+            --purple: #a855f7;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0e27;
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0a0e27 100%);
+            animation: gradientShift 15s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .top-bar {
+            background: rgba(10, 14, 39, 0.95);
+            padding: 12px 0;
+            border-bottom: 2px solid rgba(0, 212, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .top-bar .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .tagline {
+            font-size: 14px;
+            color: var(--text-dark);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .social-links a {
+            color: var(--text);
+            margin-left: 15px;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 18px;
+        }
+
+        .social-links a:hover {
+            color: var(--primary);
+            transform: scale(1.2) rotate(10deg);
+        }
+
+        .main-header {
+            background: rgba(10, 14, 39, 0.98);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 4px 30px rgba(0, 212, 255, 0.2);
+            border-bottom: 1px solid rgba(0, 212, 255, 0.3);
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 32px;
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+            animation: glow 3s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { filter: drop-shadow(0 0 10px rgba(0, 212, 255, 0.5)); }
+            50% { filter: drop-shadow(0 0 20px rgba(255, 0, 110, 0.8)); }
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transition: width 0.3s;
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        .nav-menu a:hover {
+            color: var(--primary);
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.4s;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            box-shadow: 0 5px 20px rgba(0, 212, 255, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.6);
+        }
+
+        .btn-outline {
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: var(--dark);
+            transform: translateY(-3px);
+        }
+
+        .icon-btn {
+            background: rgba(0, 212, 255, 0.1);
+            color: var(--text);
+            font-size: 20px;
+            position: relative;
+            padding: 10px;
+            border-radius: 50%;
+        }
+
+        .icon-btn:hover {
+            background: rgba(0, 212, 255, 0.3);
+            transform: scale(1.1) rotate(15deg);
+        }
+
+        .badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            color: white;
+            border-radius: 50%;
+            width: 22px;
+            height: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: bold;
+            animation: bounce 2s ease infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        .main-content-wrapper {
+            display: flex;
+            gap: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+/* 
+    body {
+      background-color: #0b0f19;
+      color: #e0e0e0;
+      line-height: 1.6;
+      overflow-x: hidden;
+    } */
+
+    a {
+      text-decoration: none;
+      color: #00bfff;
+      transition: color 0.3s ease;
+    }
+
+    a:hover {
+      color: #66d9ff;
+    }
+
+    /* ===== Navbar ===== */
+    /* nav {
+      background-color: rgba(15, 20, 35, 0.95);
+      padding: 15px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    nav h1 {
+      font-size: 1.8rem;
+      color: #00bfff;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 25px;
+      list-style: none;
+    }
+
+    nav ul li a {
+      color: #e0e0e0;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: #00bfff;
+      text-shadow: 0 0 8px #00bfff;
+    } */
+
+    /* ===== Page Header ===== */
+    .page-header {
+      text-align: center;
+      padding: 60px 20px 20px;
+      color: #00bfff;
+      font-size: 2rem;
+      text-shadow: 0 0 10px #00bfff;
+      letter-spacing: 1px;
+    }
+
+    /* ===== Container ===== */
+    .container {
+      max-width: 1000px;
+      margin: 40px auto;
+      background: rgba(20, 25, 45, 0.9);
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+      animation: fadeIn 1.2s ease;
+    }
+
+    .section {
+      margin-bottom: 35px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 20px;
+    }
+
+    .section:last-child {
+      border-bottom: none;
+    }
+
+    .section h2 {
+      color: #00bfff;
+      font-size: 1.4rem;
+      margin-bottom: 10px;
+      transition: transform 0.3s;
+    }
+
+    .section h2:hover {
+      transform: translateX(5px);
+      text-shadow: 0 0 10px #00bfff;
+    }
+
+    .section p {
+      color: #d0d0d0;
+      text-align: justify;
+      font-size: 0.98rem;
+    }
+
+    /* ===== Footer ===== */
+    footer {
+      text-align: center;
+      padding: 25px;
+      background-color: #0b0f19;
+      color: #808080;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      margin-top: 60px;
+      font-size: 0.9rem;
+    }
+
+    /* ===== Animations ===== */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+  </style>
+</head>
+<body>
+     <div class="animated-bg"></div>
+
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="tagline"> Level Up Your Gaming Experience - Instant Digital Delivery 24/7</div>
+            <div class="social-links">
+                <a href="https://t.me/@Zipper_ISA" title="Telegram"></a>
+                <a href="https://www.instagram.com/zipper_sells/" title="Instagram"></a>
+                <a href="https://discord.com/invite/qzsq6rb2Rh" title="Discord"></a>
+                <a href="#" title="Whatsapp"></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Header -->
+    <header class="main-header">
+        <div class="header-content">
+            <a href="#" class="logo">⚡ ZIPPER SELLS</a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="/index.html">Home</a></li>
+                    <li><a href="/index.html">Shop</a></li>
+                    <li><a href="/index.html">Daily Deals</a></li>
+                    <li><a href="#blogs">Blog</a></li>
+                    <li><a href="#about">About Us</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <button class="btn icon-btn" onclick="window.location.href='wishlist.html'">
+                    ❤️
+                    <span class="badge">3</span>
+                </button>
+                <button class="btn icon-btn" onclick="window.location.href='/cart.html'">
+                    🛒
+                    <span class="badge cart-badge">2</span>
+                </button>
+                <button class="btn btn-outline" onclick="openModal('login')">Login</button>
+                <button class="btn btn-primary" onclick="openModal('signup')">Sign Up</button>
+            </div>
+        </div>
+    </header>
+
+  <!-- ===== Navbar ===== -->
+  <!-- <nav>
+    <h1>Zipper Sells</h1>
+    <ul>
+      <li><a href="/index.html">Home</a></li>
+      <li><a href="/cart.html">Shop</a></li>
+      <li><a href="/Faq.html" style="color:#00bfff;">Support</a></li>
+
+    </ul>
+  </nav> -->
+
+  <!-- ===== Header ===== -->
+  <div class="page-header">Support & Help Center</div>
+
+  <!-- ===== Support Content ===== -->
+  <div class="container">
+    
+    <div class="section">
+      <h2>FAQ</h2>
+      <p>
+        <strong>Q:</strong> How do I purchase a game or subscription?<br>
+        <strong>A:</strong> Simply visit our <b>Shop</b> page, choose your favorite game or subscription, and click “Add to Cart.” Once you’re done shopping, proceed to checkout and complete your purchase using any of the available payment methods.
+      </p>
+      <p>
+        <strong>Q:</strong> When will I receive my order?<br>
+        <strong>A:</strong> Most products are delivered instantly. However, certain items may take up to 5–10 minutes due to verification or activation steps.
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>How to Buy</h2>
+      <p>
+        Buying from <b>Zipper Sells</b> is simple:
+        <ol>
+          <li>Browse our <b>Shop</b> for games, currencies, or subscriptions.</li>
+          <li>Click “Add to Cart” and review your selections.</li>
+          <li>Proceed to checkout, fill in your details, and confirm your order.</li>
+          <li>Receive your product key or account instantly by email or dashboard.</li>
+        </ol>
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>Refund Policy</h2>
+      <p>
+        Refunds are available only if:
+        <ul>
+          <li>The product key has not been redeemed or activated.</li>
+          <li>The order was made by mistake and reported within 24 hours.</li>
+        </ul>
+        Digital keys and instant delivery items cannot be refunded once used. For more details, contact our <b>Support Team</b>.
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>Terms of Service</h2>
+      <p>
+        By purchasing from <b>Zipper Sells</b>, you agree to use products legally and responsibly. Sharing purchased accounts or keys publicly is strictly prohibited. We reserve the right to suspend suspicious activities or fraudulent orders to ensure a secure platform.
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>Privacy Policy</h2>
+      <p>
+        We value your privacy. Your data is encrypted and never shared with third parties. We only collect essential information to process orders securely and improve our website’s performance. Payment details are processed through trusted, PCI-compliant gateways.
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>Track Order</h2>
+      <p>
+        To track your order, go to the <b>My Account</b> section and click on <b>Order History</b>. You’ll see your current status — such as “Pending,” “Processing,” or “Delivered.”  
+        For instant delivery items, the status will update automatically once payment is confirmed.
+      </p>
+    </div>
+
+  </div>
+
+  <!-- ===== Footer ===== -->
+  <footer>
+    © 2025 Zipper Sells. All Rights Reserved.
+  </footer>
+
+</body>
+</html>
