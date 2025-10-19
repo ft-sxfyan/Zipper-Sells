@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/assets/image/favicon.png" type="/image/png">
     <title>Zipper Sells - Your Ultimate Gaming Store</title>
     <style>
         * {
@@ -235,21 +236,22 @@
             transform: scale(1.1) rotate(15deg);
         }
 
-        .badge {
-            position: absolute;
-            top: -5px;
-            right: -5px;
-            background: linear-gradient(135deg, var(--secondary), var(--accent));
-            color: white;
+         .badge {
+            min-width: 18px;
+            height: 18px;
+            font-size: 10px;
+            line-height: 18px;
+            right: -6px;
+            top: -6px;
+            background: var(--secondary);
+            color: #fff;
             border-radius: 50%;
-            width: 22px;
-            height: 22px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 11px;
-            font-weight: bold;
-            animation: bounce 2s ease infinite;
+            text-align: center;
+            position: absolute;
+            z-index: 10;
+        }
+        .cart-badge-pop {
+            animation: popCartBadge 0.4s;
         }
 
         @keyframes bounce {
@@ -274,10 +276,10 @@
             background: linear-gradient(135deg, var(--dark-light), var(--dark-card));
             border-radius: 20px;
             padding: 30px;
-            border: 2px solid rgba(0, 212, 255, 0.3);
+            border: 2px solid rgba(0, 0, 0, 0.3);
             position: sticky;
             top: 120px;
-            box-shadow: 0 10px 40px rgba(0, 212, 255, 0.2);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
         }
 
         .sidebar-title {
@@ -297,7 +299,7 @@
         .category-item {
             padding: 14px 18px;
             margin-bottom: 10px;
-            background: rgba(0, 212, 255, 0.05);
+            background: rgba(0, 0, 0, 0.05);
             border-radius: 12px;
             cursor: pointer;
             transition: all 0.4s;
@@ -1040,26 +1042,26 @@
     right: -6px;
     top: -6px;
 }
-        .cart-badge {
-            display: inline-block;
-            min-width: 28px;
-            height: 28px;
-            font-size: 18px;
-            font-weight: bold;
-            color: #fff;
+       .wishlist-badge, .cart-badge {
+            min-width: 18px;
+            height: 18px;
+            font-size: 12px;
+            line-height: 18px;
+            right: -6px;
+            top: -6px;
             background: var(--secondary);
+            color: #fff;
             border-radius: 50%;
             text-align: center;
-            line-height: 28px;
             position: absolute;
-            top: -10px;
-            right: -10px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
             z-index: 10;
         }
-
         .cart-badge-pop {
             animation: popCartBadge 0.4s;
+        }
+
+        .wishlist-badge-pop {
+            animation: popWishlistBadge 0.4s;
         }
 
         @keyframes popCartBadge {
@@ -1127,18 +1129,63 @@
 <body>
     <div class="animated-bg"></div>
 
-    <!-- Top Bar -->
-    <div class="top-bar">
-        <div class="container">
-            <div class="tagline"> Level Up Your Gaming Experience - Instant Digital Delivery 24/7</div>
-            <div class="social-links">
-                <a href="https://t.me/@Zipper_ISA" title="Telegram"></a>
-                <a href="https://www.instagram.com/zipper_sells/" title="Instagram"></a>
-                <a href="https://discord.com/invite/qzsq6rb2Rh" title="Discord"></a>
-                <a href="#" title="Whatsapp"></a>
-            </div>
-        </div>
+   <!-- Top Bar -->
+<div class="top-bar">
+  <div class="container">
+    <div class="tagline">🎮 Level Up Your Gaming Experience - Instant Digital Delivery 24/7</div>
+    <div class="social-links">
+      <a href="https://www.instagram.com/zipper_sells?igsh=a3NnZXp4dHJibDcx" title="Instagram">
+        <img src="/assets/image/instagram.png" alt="Instagram" class="social-icon">
+      </a>
+      <a href="#" title="Whatsapp">
+        <img src="/assets/image/whatsapp.svg" alt="Whatsapp" class="social-icon">
+      </a>
+      <a href="https://discord.gg/R9askMTG" title="Discord">
+        <img src="/assets/image/discord.png" alt="Discord" class="social-icon">
+      </a>
     </div>
+  </div>
+</div>
+
+<style>
+  .social-links a {
+    display: inline-block;
+    margin-left: 10px;
+  }
+
+  .social-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+  background-color: transparent;
+  padding: 2px;
+  object-fit: cover;
+  transition: transform 0.2s ease;
+}
+
+
+  .social-icon:hover {
+    transform: scale(1.2);
+  }
+</style>
+
+
+<style>
+  .social-links a {
+    display: inline-block;
+    margin-left: 10px;
+  }
+  .social-links img.icon {
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+    transition: transform 0.2s ease;
+  }
+  .social-links img.icon:hover {
+    transform: scale(1.2);
+  }
+</style>
+
 
     <!-- Main Header -->
     <header class="main-header">
@@ -1154,16 +1201,22 @@
                 </ul>
             </nav>
             <div class="header-actions">
-                <button class="btn icon-btn" onclick="window.location.href='wishlist.html'">
+               <button class="btn icon-btn" onclick="window.location.href='/wishlist.html'">
                     ❤️
-                    <span class="badge">3</span>
+                    <span class="wishlist-badge">0</span>
                 </button>
                 <button class="btn icon-btn" onclick="window.location.href='/cart.html'">
                     🛒
-                    <span class="badge cart-badge">2</span>
+                    <span class="cart-badge">0</span>
                 </button>
-                <button class="btn btn-outline" onclick="openModal('login')">Login</button>
-                <button class="btn btn-primary" onclick="openModal('signup')">Sign Up</button>
+                <div id="auth-area" style="display:flex; gap:10px; align-items:center;">
+                    <button class="btn btn-outline" onclick="openModal('login')">Login</button>
+                    <button class="btn btn-primary" onclick="openModal('signup')">Sign Up</button>
+                </div>
+                <div id="account-area" style="display:none; gap:10px; align-items:center;">
+                    <span id="account-name" style="font-weight:700; color:var(--primary);"></span>
+                    <button class="btn btn-outline" id="logout-btn">Logout</button>
+                </div>
             </div>
         </div>
     </header>
@@ -1178,8 +1231,8 @@
                     <li class="category-item active" onclick="filterCategory(this, 'all')">🎮 All Games Services</li>
                     <li class="category-item" onclick="filterCategory(this, 'fps')"> ROBUX</li>
                     <li class="category-item" onclick="filterCategory(this, 'rpg')"> VBUX</li>
-                    <li class="category-item" onclick="filterCategory(this, 'sports')"> FIFA POINTS</li>
-                    <li class="category-item" onclick="filterCategory(this, 'racing')"> GENSHIN IMPACT</li>
+                    <li class="category-item" onclick="filterCategory(this, 'sports')"> VAL POINTS</li>
+                    <li class="category-item" onclick="filterCategory(this, 'racing')"> LOG</li>
                     <li class="category-item" onclick="filterCategory(this, 'puzzle')"> FREE FIRE</li>
                     <li class="category-item" onclick="filterCategory(this, 'horror')"> PUBG</li>
                     
@@ -1278,17 +1331,17 @@
             <section class="section-wrapper" id="daily-deals">
                 <div class="section-header">
                     <h2 class="section-title">🔥 Daily Deals</h2>
-                    <div class="timer" id="dealTimer">⏰ 12:34:56</div>
+                    
                 </div>
                 <div class="products-grid">
                     <div class="product-card">
                         <div class="discount-badge">-50% OFF</div>
-                        <img src="https://image.api.playstation.com/vulcan/ap/rnd/202207/1210/4xJ8XB3bi888QTLZYdl7Oi0s.png" alt="God of War Ragnarök" class="product-image">
-                        <h3 class="product-title">God of War Ragnarök</h3>
-                        <p class="product-category">Action | PS5</p>
+                        <img src="/assets/image/fortnite.png" alt="V-bucks" class="product-image">
+                        <h3 class="product-title">1000 V-Bucks</h3>
+                        <p class="product-category">FORTNITE | In-Game Currency</p>
                         <div>
-                            <span class="product-price">$34.99</span>
-                            <span class="old-price">$69.99</span>
+                            <span class="product-price">Rs2500</span>
+                            <span class="old-price">Rs5000</span>
                         </div>
                         <div class="product-actions">
                             <button class="btn btn-outline btn-small" onclick="addToWishlist('God of War Ragnarok', 34.99)">❤️</button>
@@ -1298,12 +1351,12 @@
 
                     <div class="product-card">
                         <div class="discount-badge">-40% OFF</div>
-                        <img src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1938090/header.jpg" alt="Call of Duty" class="product-image">
-                        <h3 class="product-title">Call of Duty: MW III</h3>
-                        <p class="product-category">FPS | Multi-Platform</p>
+                        <img src="/assets/image/roblox.png" alt="Roblox" class="product-image">
+                        <h3 class="product-title">1000 Robux</h3>
+                        <p class="product-category">Roblox | In-game Currency</p>
                         <div>
-                            <span class="product-price">$41.99</span>
-                            <span class="old-price">$69.99</span>
+                            <span class="product-price">Rs3800</span>
+                            <span class="old-price">Rs4200</span>
                         </div>
                         <div class="product-actions">
                             <button class="btn btn-outline btn-small" onclick="addToWishlist('COD MW III', 41.99)">❤️</button>
@@ -1313,12 +1366,12 @@
 
                     <div class="product-card">
                         <div class="discount-badge">-35% OFF</div>
-                        <img src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1174180/header.jpg" alt="Red Dead Redemption 2" class="product-image">
-                        <h3 class="product-title">Red Dead Redemption 2</h3>
-                        <p class="product-category">Action | PC/Console</p>
+                        <img src="/assets/image/UC.jpg" alt="PUBG UC" class="product-image">
+                        <h3 class="product-title">30 UC</h3>
+                        <p class="product-category">PUBG | In-Game Currency</p>
                         <div>
-                            <span class="product-price">$38.99</span>
-                            <span class="old-price">$59.99</span>
+                            <span class="product-price">Rs180</span>
+                            <span class="old-price">Rs200</span>
                         </div>
                         <div class="product-actions">
                             <button class="btn btn-outline btn-small" onclick="addToWishlist('RDR2', 38.99)">❤️</button>
@@ -1335,12 +1388,12 @@
                 </div>
                 <div class="currency-grid">
                     <div class="currency-card">
-                        <div class="currency-icon" style="background: linear-gradient(135deg, #FF4655, #FF7A00);">
+                        <div class="currency-icon" style="background: linear-gradient(135deg, #f1f1f1, #FF7A00);">
                             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Valorant_logo_-_pink_color_version.svg/1200px-Valorant_logo_-_pink_color_version.svg.png" alt="Valorant">
                         </div>
                         <h3>Valorant Points</h3>
                         <p style="color: var(--text-dark); margin: 10px 0;">VP Currency</p>
-                        <div class="product-price">From $4.99</div>
+                        <div class="product-price">From Rs1800</div>
                         <button class="btn btn-primary" style="margin-top: 15px; width: 100%;" onclick="addToCart('Valorant Points', 4.99)">Buy Now</button>
                     </div>
 
@@ -1350,17 +1403,17 @@
                         </div>
                         <h3>Fortnite V-Bucks</h3>
                         <p style="color: var(--text-dark); margin: 10px 0;">V-Bucks</p>
-                        <div class="product-price">From $7.99</div>
+                        <div class="product-price">From Rs2250</div>
                         <button class="btn btn-primary" style="margin-top: 15px; width: 100%;" onclick="addToCart('Fortnite V-Bucks', 7.99)">Buy Now</button>
                     </div>
 
                     <div class="currency-card">
-                        <div class="currency-icon" style="background: linear-gradient(135deg, #E03C28, #FF6B00);">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Roblox_Logo.svg/2560px-Roblox_Logo.svg.png" alt="Roblox">
+                        <div class="currency-icon" style="background: linear-gradient(135deg, #fbfbfb, #ffffff);">
+                            <img src="/assets/image/robux.png" alt="Roblox">
                         </div>
                         <h3>Roblox Robux</h3>
                         <p style="color: var(--text-dark); margin: 10px 0;">Robux</p>
-                        <div class="product-price">From $9.99</div>
+                        <div class="product-price">From Rs3000</div>
                         <button class="btn btn-primary" style="margin-top: 15px; width: 100%;" onclick="addToCart('Roblox Robux', 9.99)">Buy Now</button>
                     </div>
 
@@ -1373,29 +1426,33 @@
                     </div>
 
                     <div class="currency-card">
-                        <div class="currency-icon" style="background: linear-gradient(135deg, #FFAB00, #FFD700);">⭐</div>
-                        <h3>Genshin Impact</h3>
-                        <p style="color: var(--text-dark); margin: 10px 0;">Genesis Crystals</p>
-                        <div class="product-price">From $4.99</div>
-                        <button class="btn btn-primary" style="margin-top: 15px; width: 100%;" onclick="addToCart('Genshin Crystals', 4.99)">Buy Now</button>
+                        <div class="currency-icon" style="background: linear-gradient(135deg, #ffffff, #ffffff);">
+                            <img src="/assets/image/free fire.png" alt="Free Fire">
+                        </div>
+                        <h3>FF Diamonds</h3>
+                        <p style="color: var(--text-dark); margin: 10px 0;">FF Diamonds</p>
+                        <div class="product-price">From Rs100</div>
+                        <button class="btn btn-primary" style="margin-top: 15px; width: 100%;" onclick="addToCart('FF Diamonds', 4.99)">Buy Now</button>
                     </div>
 
                     <div class="currency-card">
-                        <div class="currency-icon" style="background: linear-gradient(135deg, #FF6B00, #FFA500);">🔥</div>
-                        <h3>Apex Legends</h3>
-                        <p style="color: var(--text-dark); margin: 10px 0;">Apex Coins</p>
-                        <div class="product-price">From $9.99</div>
-                        <button class="btn btn-primary" style="margin-top: 15px; width: 100%;" onclick="addToCart('Apex Coins', 9.99)">Buy Now</button>
+                        <div class="currency-icon" style="background: linear-gradient(135deg, #ffffff, #b33333);">
+                            <img src="/assets/image/pubg.jpg" alt="Pubg">
+                        </div>
+                        <h3>Pubg UC</h3>
+                        <p style="color: var(--text-dark); margin: 10px 0;">Pubg UC</p>
+                        <div class="product-price">From Rs280</div>
+                        <button class="btn btn-primary" style="margin-top: 15px; width: 100%;" onclick="addToCart('Pubg UC', 9.99)">Buy Now</button>
                     </div>
                 </div>
             </section>
 
             <!-- Platform Logos -->
             <section class="platforms-section">
-                <h2 class="section-title">Available Platforms</h2>
+                <h2 class="section-title">🎮 Available Platforms</h2>
                 <div class="platforms-grid">
                     <div class="platform-logo">
-                        <img src="/assets/image/ps5.png" alt="PlayStation">
+                        <img src="/assets/image/ps.png" alt="PlayStation">
                     </div>
                     <div class="platform-logo">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Xbox_one_logo.svg/2048px-Xbox_one_logo.svg.png" alt="Xbox">
@@ -1410,45 +1467,12 @@
                         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Windows_logo_-_2012.png/640px-Windows_logo_-_2012.png" alt="PC">
                     </div>
                     <div class="platform-logo">
-                        <img src="/assets/image/image.png" alt="Epic Games">
+                        <img src="/assets/image/EG.png" alt="Epic Games">
                     </div>
                 </div>
             </section>
 
-            <!-- Blog Section -->
-            <section class="blog-section" id="blog">
-                <div class="section-header">
-                    <h2 class="section-title">📰 Latest Gaming News</h2>
-                </div>
-                <div class="blog-grid">
-                    <div class="blog-card">
-                        <img src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1938090/ss_d830ccd51c2344cd3703ab40e469fe3af5cf0e9c.1920x1080.jpg" alt="Blog 1" class="blog-image">
-                        <div class="blog-content">
-                            <div class="blog-date">📅 October 15, 2025</div>
-                            <h3 class="blog-title">Top 10 Must-Play Games This Month</h3>
-                            <p class="blog-excerpt">Discover the hottest titles that every gamer should experience this October. From action-packed adventures to immersive RPGs...</p>
-                        </div>
-                    </div>
-
-                    <div class="blog-card">
-                        <img src="https://image.api.playstation.com/vulcan/ap/rnd/202306/0629/be71cf0fddbdab27b934a50d4d3e9f481c0b0a91ab47edb.jpg" alt="Blog 2" class="blog-image">
-                        <div class="blog-content">
-                            <div class="blog-date">📅 October 12, 2025</div>
-                            <h3 class="blog-title">Spider-Man 2: Complete Guide</h3>
-                            <p class="blog-excerpt">Everything you need to know about the latest Spider-Man adventure, including tips, tricks, and hidden secrets...</p>
-                        </div>
-                    </div>
-
-                    <div class="blog-card">
-                        <img src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1086940/ss_80ecbf533c43d4ba6b8f7513ddc37c45f6556928.1920x1080.jpg" alt="Blog 3" class="blog-image">
-                        <div class="blog-content">
-                            <div class="blog-date">📅 October 10, 2025</div>
-                            <h3 class="blog-title">Best RPG Games of 2025</h3>
-                            <p class="blog-excerpt">Explore the most captivating role-playing games that defined this year, featuring epic storylines and stunning graphics...</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
+           
         </main>
     </div>
 
@@ -1463,7 +1487,8 @@
                 <div class="availability-hours">
                     <h4 style="margin-bottom: 10px; color: var(--primary);">⏰ Availability</h4>
                     <p><strong>24/7 Instant Delivery</strong></p>
-                    <p>📧 zippersells@gmail.com.com</p>
+                    <p>Support: Mon-Sun 9AM - 11PM</p>
+                    <p>📧 support@zippersells.com</p>
                 </div>
                 <div class="payment-methods">
                     <div class="payment-icon">💳 Visa</div>
@@ -1479,8 +1504,9 @@
                     <li><a href="#home">Home</a></li>
                     <li><a href="#shop">Shop All Games</a></li>
                     <li><a href="#daily-deals">Daily Deals</a></li>
-                    <li><a href="#blog">Blog & News</a></li>
-                    <li><a href="#about">About Us</a></li>
+                    <li><a href="/blogs.html">Blog & News</a></li>
+                    <li><a href="/about.html">About Us</a></li>
+                    <li><a href="#">Contact</a></li>
                 </ul>
             </div>
 
@@ -1500,11 +1526,11 @@
                 <h3>Support</h3>
                 <ul class="footer-links">
                     <li><a href="/Faq.html">FAQ</a></li>
-                    <li><a href="/Faq.html">How to Buy</a></li>
-                    <li><a href="/Faq.html">Refund Policy</a></li>
-                    <li><a href="/Faq.html">Terms of Service</a></li>
-                    <li><a href="/Faq.html">Privacy Policy</a></li>
-                    <li><a href="/Faq.html">Track Order</a></li>
+                    <li><a href="#">How to Buy</a></li>
+                    <li><a href="#">Refund Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Track Order</a></li>
                 </ul>
             </div>
         </div>
@@ -1519,7 +1545,7 @@
         <div class="modal-content">
             <span class="close-modal" onclick="closeModal('login')">&times;</span>
             <h2 class="modal-title">🔐 Login</h2>
-            <form>
+            <form id="loginForm">
                 <div class="form-group">
                     <label>Email Address</label>
                     <input type="email" placeholder="Enter your email" required>
@@ -1541,7 +1567,7 @@
         <div class="modal-content">
             <span class="close-modal" onclick="closeModal('signup')">&times;</span>
             <h2 class="modal-title">🎮 Sign Up</h2>
-            <form>
+            <form id="signupForm">
                 <div class="form-group">
                     <label>Full Name</label>
                     <input type="text" placeholder="Enter your name" required>
@@ -1697,6 +1723,71 @@
             updateCartBadge();
             updateWishlistBadge();
         };
+    </script>
+    <script>
+        // Simple account persistence using localStorage
+        (function () {
+            const ACCOUNT_KEY = 'user';
+
+            function showAccountUI() {
+                const user = JSON.parse(localStorage.getItem(ACCOUNT_KEY));
+                const authArea = document.getElementById('auth-area');
+                const accountArea = document.getElementById('account-area');
+                const accountName = document.getElementById('account-name');
+                if (!authArea || !accountArea || !accountName) return;
+                if (user && user.name) {
+                    authArea.style.display = 'none';
+                    accountName.textContent = user.name;
+                    accountArea.style.display = 'flex';
+                } else {
+                    authArea.style.display = 'flex';
+                    accountArea.style.display = 'none';
+                }
+            }
+
+            // Signup form: store name and email
+            const signupForm = document.getElementById('signupForm');
+            if (signupForm) {
+                signupForm.addEventListener('submit', function (e) {
+                    e.preventDefault();
+                    const nameInput = signupForm.querySelector('input[type="text"]');
+                    const emailInput = signupForm.querySelector('input[type="email"]');
+                    const name = (nameInput && nameInput.value.trim()) || 'User';
+                    const email = (emailInput && emailInput.value.trim()) || '';
+                    const user = { name: name, email: email };
+                    localStorage.setItem(ACCOUNT_KEY, JSON.stringify(user));
+                    closeModal('signup');
+                    showAccountUI();
+                });
+            }
+
+            // Login form: simulate login by email
+            const loginForm = document.getElementById('loginForm');
+            if (loginForm) {
+                loginForm.addEventListener('submit', function (e) {
+                    e.preventDefault();
+                    const emailInput = loginForm.querySelector('input[type="email"]');
+                    const email = (emailInput && emailInput.value.trim()) || '';
+                    const name = email ? email.split('@')[0] : 'User';
+                    const user = { name: name, email: email };
+                    localStorage.setItem(ACCOUNT_KEY, JSON.stringify(user));
+                    closeModal('login');
+                    showAccountUI();
+                });
+            }
+
+            // Logout
+            const logoutBtn = document.getElementById('logout-btn');
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', function () {
+                    localStorage.removeItem(ACCOUNT_KEY);
+                    showAccountUI();
+                });
+            }
+
+            // Initialize
+            document.addEventListener('DOMContentLoaded', showAccountUI);
+        })();
     </script>
 </body>
 </html>
