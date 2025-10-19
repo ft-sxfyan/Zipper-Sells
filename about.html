@@ -1,79 +1,919 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Zipper Sells | About Us</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
-    *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
-    body{background:#0a0a1a;color:#e0e0ff;line-height:1.8}
-    header{background:linear-gradient(135deg,#5c00e6,#00bfff);padding:50px 20px;text-align:center;color:#fff;box-shadow:0 0 20px rgba(0,0,0,0.4)}
-    header h1{font-size:2.8rem}
-    header span{color:#00d4ff}
-    nav{margin-top:20px}
-    nav a{color:#fff;text-decoration:none;margin:0 15px;transition:.3s}
-    nav a:hover{color:#00d4ff;text-shadow:0 0 10px #00d4ff}
-    main{width:90%;max-width:900px;margin:60px auto}
-    section{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);padding:40px;border-radius:12px;margin-bottom:40px;transition:.3s}
-    section:hover{box-shadow:0 0 25px rgba(0,191,255,0.3);border-color:#00bfff}
-    section h2{color:#00bfff;margin-bottom:15px;text-shadow:0 0 8px #007fff}
-    section p{opacity:.9;font-size:1rem;margin-bottom:15px}
-    .team{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:25px}
-    .member{background:rgba(255,255,255,0.08);padding:20px;text-align:center;border-radius:10px}
-    .member img{width:120px;height:120px;border-radius:50%;margin-bottom:15px;object-fit:cover;box-shadow:0 0 15px rgba(0,191,255,0.3)}
-    .member h3{color:#a874ff;margin-bottom:5px}
-    footer{text-align:center;padding:25px 0;border-top:1px solid rgba(255,255,255,0.1);background:#0f0f1f;color:#888;font-size:.9rem;margin-top:60px}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zipper Sells - About Us</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #00d4ff;
+            --primary-dark: #0099cc;
+            --secondary: #ff006e;
+            --accent: #ffbe0b;
+            --dark: #0a0e27;
+            --dark-light: #1a1f3a;
+            --dark-card: #252b48;
+            --text: #ffffff;
+            --text-dark: #b8c1ec;
+            --success: #06ffa5;
+            --purple: #a855f7;
+            --red: #ff0000;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0e27;
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+           /* Animated Background */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0a0e27 100%);
+            animation: gradientShift 15s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .top-bar {
+            background: rgba(10, 14, 39, 0.95);
+            padding: 12px 0;
+            border-bottom: 2px solid rgba(0, 212, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .top-bar .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .tagline {
+            font-size: 14px;
+            color: var(--text-dark);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .social-links a {
+            color: var(--text);
+            margin-left: 15px;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 18px;
+        }
+
+        .social-links a:hover {
+            color: var(--primary);
+            transform: scale(1.2) rotate(10deg);
+        }
+
+        .main-header {
+            background: rgba(10, 14, 39, 0.98);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 4px 30px rgba(0, 212, 255, 0.2);
+            border-bottom: 1px solid rgba(0, 212, 255, 0.3);
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 32px;
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+            animation: glow 3s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { filter: drop-shadow(0 0 10px rgba(0, 212, 255, 0.5)); }
+            50% { filter: drop-shadow(0 0 20px rgba(255, 0, 110, 0.8)); }
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transition: width 0.3s;
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        .nav-menu a:hover {
+            color: var(--primary);
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.4s;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            box-shadow: 0 5px 20px rgba(0, 212, 255, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.6);
+        }
+
+        .btn-outline {
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: var(--dark);
+            transform: translateY(-3px);
+        }
+
+        .icon-btn {
+            background: rgba(0, 212, 255, 0.1);
+            color: var(--text);
+            font-size: 20px;
+            position: relative;
+            padding: 10px;
+            border-radius: 50%;
+        }
+
+        .icon-btn:hover {
+            background: rgba(0, 212, 255, 0.3);
+            transform: scale(1.1) rotate(15deg);
+        }
+
+        .badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            color: white;
+            border-radius: 50%;
+            width: 22px;
+            height: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: bold;
+            animation: bounce 2s ease infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        /* .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0a0e27 100%);
+            animation: gradientShift 15s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .top-bar {
+            background: rgba(10, 14, 39, 0.95);
+            padding: 12px 0;
+            border-bottom: 2px solid rgba(0, 212, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .top-bar .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .tagline {
+            font-size: 14px;
+            color: var(--text-dark);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .social-links a {
+            color: var(--text);
+            margin-left: 15px;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 18px;
+        }
+
+        .social-links a:hover {
+            color: var(--primary);
+            transform: scale(1.2) rotate(10deg);
+        }
+
+        .breadcrumb {
+            padding: 10px 20px;
+            background: var(--dark-light);
+            margin-bottom: 30px;
+        }
+
+        .breadcrumb a {
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .breadcrumb span {
+            color: var(--primary);
+            margin: 0 10px;
+        }
+
+        .main-header {
+            background: rgba(10, 14, 39, 0.98);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 4px 30px rgba(0, 212, 255, 0.2);
+            text-align: center;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--text);
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        nav {
+            margin-top: 15px;
+        }
+
+        nav a {
+            color: var(--text);
+            text-decoration: none;
+            margin: 0 15px;
+            transition: all 0.3s;
+            font-size: 16px;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        } */
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .about-section {
+            text-align: center;
+            padding: 60px 0;
+        }
+
+        .about-section h1 {
+            font-size: 3rem;
+            color: var(--text);
+            margin-bottom: 20px;
+        }
+
+        .about-section p {
+            font-size: 1.1rem;
+            color: var(--text-dark);
+            max-width: 800px;
+            margin: 0 auto 40px;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin: 60px 0;
+        }
+
+        .feature {
+            background: var(--dark-card);
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .feature:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-number {
+            color: var(--red);
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .feature h3 {
+            color: var(--text);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .feature p {
+            color: var(--text-dark);
+        }
+
+        .cta-section {
+            text-align: center;
+            padding: 60px 0;
+            background: var(--dark-light);
+            margin-top: 60px;
+        }
+
+        .cta-section h2 {
+            font-size: 2rem;
+            color: var(--text);
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            color: var(--text-dark);
+            margin-bottom: 30px;
+        }
+         .footer {
+            background: linear-gradient(135deg, var(--dark), var(--dark-light));
+            padding: 70px 0 35px;
+            margin-top: 100px;
+            border-top: 2px solid rgba(0, 212, 255, 0.3);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+
+        .footer-section h3 {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 25px;
+            font-size: 22px;
+        }
+
+        .footer-logo {
+            font-size: 36px;
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+
+        .footer-description {
+            color: var(--text-dark);
+            margin-bottom: 25px;
+            line-height: 1.8;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 14px;
+        }
+
+        .footer-links a {
+            color: var(--text-dark);
+            text-decoration: none;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .footer-links a::before {
+            content: '→ ';
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .footer-links a:hover::before {
+            opacity: 1;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+            padding-left: 15px;
+        }
+
+        .availability-hours {
+            background: rgba(0, 212, 255, 0.1);
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 20px;
+            border: 2px solid rgba(0, 212, 255, 0.3);
+        }
+
+        .availability-hours p {
+            margin: 8px 0;
+            font-size: 15px;
+        }
+
+        .payment-methods {
+            display: flex;
+            gap: 12px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+
+        .payment-icon {
+            padding: 12px 18px;
+            background: rgba(0, 212, 255, 0.1);
+            border-radius: 10px;
+            border: 2px solid rgba(0, 212, 255, 0.3);
+            font-size: 14px;
+            color: var(--text);
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .payment-icon:hover {
+            background: rgba(0, 212, 255, 0.2);
+            transform: translateY(-3px);
+            border-color: var(--primary);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 35px;
+            border-top: 2px solid rgba(0, 212, 255, 0.3);
+            color: var(--text-dark);
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .modal.active {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, var(--dark-light), var(--dark-card));
+            padding: 50px;
+            border-radius: 25px;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            border: 2px solid rgba(0, 212, 255, 0.4);
+            box-shadow: 0 20px 60px rgba(0, 212, 255, 0.3);
+            animation: slideUp 0.4s ease;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 32px;
+            cursor: pointer;
+            color: var(--text);
+            transition: all 0.3s;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255, 0, 110, 0.2);
+        }
+
+        .close-modal:hover {
+            color: var(--secondary);
+            transform: rotate(90deg) scale(1.2);
+            background: rgba(255, 0, 110, 0.4);
+        }
+
+        .modal-title {
+            font-size: 32px;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: bold;
+        }
+
+        /* footer {
+            background: var(--dark-light);
+            color: var(--text);
+            padding: 40px 0;
+            margin-top: 60px;
+        }
+
+        footer .container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+
+        .footer-col h4 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a {
+            color: var(--text-dark);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--primary);
+        }
+
+        @media (max-width: 768px) {
+            .features {
+                grid-template-columns: 1fr;
+            }
+            
+            footer .container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            footer .container {
+                grid-template-columns: 1fr; */
+            
+    </style>
 </head>
 <body>
-  <header>
-    <h1>About <span>Zipper Sells</span></h1>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="blogs.html">Blogs</a>
-      <a href="about.html">About Us</a>
-      <a href="support.html">Support</a>
-    </nav>
-  </header>
+    <div class="animated-bg"></div>
 
-  <main>
-    <section>
-      <h2>Our Story</h2>
-      <p>Founded in 2022, Zipper Sells started as a small digital gaming store built by a group of passionate gamers and developers who wanted to make digital content accessible to everyone worldwide. From day one, our goal was simple — provide instant, secure, and affordable access to games and subscriptions without the typical hassle of waiting hours or risking fake sellers.</p>
-      <p>Today, we’re trusted by thousands of gamers and content creators. Our store offers top titles like Fortnite, Valorant, CS:GO, GTA V, FIFA 26, and subscriptions for Netflix, Discord Nitro, and NordVPN — all delivered instantly with automated systems.</p>
-    </section>
-
-    <section>
-      <h2>Our Mission</h2>
-      <p>At Zipper Sells, we believe gaming is more than a hobby — it’s a community. Our mission is to empower gamers by providing trusted products, instant delivery, and 24/7 support. Every click and purchase is secured through advanced encryption and global payment partners.</p>
-      <p>We’re constantly evolving, partnering with game publishers and tech brands to deliver you the latest digital experiences. We don’t just sell keys — we sell access to your next adventure.</p>
-    </section>
-
-    <section>
-      <h2>Meet the Team</h2>
-      <div class="team">
-        <div class="member">
-          <img src="https://i.pravatar.cc/150?img=12" alt="Team Member">
-          <h3>Sufyan Khan</h3>
-          <p>Founder & Frontend Developer — Visionary behind Zipper Sells UI and brand design.</p>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="tagline"> Level Up Your Gaming Experience - Instant Digital Delivery 24/7</div>
+            <div class="social-links">
+                <a href="https://t.me/@Zipper_ISA" title="Telegram"></a>
+                <a href="https://www.instagram.com/zipper_sells/" title="Instagram"></a>
+                <a href="https://discord.com/invite/qzsq6rb2Rh" title="Discord"></a>
+                <a href="#" title="Whatsapp"></a>
+            </div>
         </div>
-        <div class="member">
-          <img src="https://i.pravatar.cc/150?img=32" alt="Team Member">
-          <h3>Ali Raza</h3>
-          <p>Backend Engineer — Ensures our servers and instant delivery systems run flawlessly 24/7.</p>
-        </div>
-        <div class="member">
-          <img src="https://i.pravatar.cc/150?img=49" alt="Team Member">
-          <h3>Ahmed Iqbal</h3>
-          <p>Marketing Head — Connects gamers and brands through creative campaigns and eSports collabs.</p>
-        </div>
-      </div>
-    </section>
-  </main>
+    </div>
 
-  <footer>
-    <p>© 2025 Zipper Sells — Built by Gamers, for Gamers.</p>
-  </footer>
+    <!-- Main Header -->
+    <header class="main-header">
+        <div class="header-content">
+            <a href="#" class="logo">⚡ ZIPPER SELLS</a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="/index.html">Home</a></li>
+                    <li><a href="/index.html">Shop</a></li>
+                    <li><a href="/index.html">Daily Deals</a></li>
+                    <li><a href="/blogs.html">Blog</a></li>
+                    <li><a href="/about.html">About Us</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <button class="btn icon-btn" onclick="window.location.href='wishlist.html'">
+                    ❤️
+                    <span class="badge">3</span>
+                </button>
+                <button class="btn icon-btn" onclick="window.location.href='/cart.html'">
+                    🛒
+                    <span class="badge cart-badge">2</span>
+                </button>
+                <button class="btn btn-outline" onclick="openModal('login')">Login</button>
+                <button class="btn btn-primary" onclick="openModal('signup')">Sign Up</button>
+            </div>
+        </div>
+    </header>
+    <!-- <div class="animated-bg"></div>
+    <div class="top-bar">
+        <div class="container">
+            <div class="tagline">Your Ultimate Gaming Destination</div>
+            <div class="social-links">
+                <a href="#">Twitter</a>
+                <a href="#">Discord</a>
+                <a href="#">Instagram</a>
+            </div>
+        </div>
+    </div>
+
+    <header class="main-header">
+        <a href="index.html" class="logo">Zipper <span>Sells</span></a>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="blogs.html">Blogs</a>
+            <a href="about.html">About Us</a>
+            <a href="support.html">Support</a>
+        </nav>
+    </header>
+
+    <div class="breadcrumb">
+        <div class="container">
+            <a href="index.html">Home</a>
+            <span>></span>
+            <a href="about.html">About Us</a>
+        </div>
+    </div> -->
+
+    <main class="container">
+        <section class="about-section">
+            <h1>About Us</h1>
+            <p>At Zipper Sells, we are passionate about bringing joy to the world of gaming enthusiasts and gift-givers alike. With an unwavering commitment to providing top-quality products and exceptional service, we have become your go-to destination for a diverse range of gift cards that cater to your gaming cravings.</p>
+        </section>
+
+        <h2>Your Ultimate Destination for Gaming Cards and More!</h2>
+
+        <div class="features">
+            <div class="feature">
+                <div class="feature-number">01.</div>
+                <h3>Instant Delivery</h3>
+                <p>Say goodbye to waiting for shipping – our digital gift cards grant you instant access to your desired content.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-number">02.</div>
+                <h3>Secure Transactions</h3>
+                <p>Your security is our priority. We ensure safe and secure transactions to provide you peace of mind.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-number">03.</div>
+                <h3>Customer Service</h3>
+                <p>Have a question or need assistance? Our dedicated support team is here to help you with prompt and friendly service.</p>
+            </div>
+        </div>
+
+        <section class="cta-section">
+            <h2>Elevate your gaming experience</h2>
+            <p>Explore our selection of gaming cards now and open the door to a realm of unparalleled adventures!</p>
+        </section>
+    </main>
+
+       <!-- Footer -->
+    <footer class="footer" id="about">
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="footer-logo">⚡ ZIPPER SELLS</div>
+                <p class="footer-description">
+                    Your trusted destination for digital games, in-game currencies, and gaming subscriptions. We deliver instantly and securely to gamers worldwide.
+                </p>
+                <div class="availability-hours">
+                    <h4 style="margin-bottom: 10px; color: var(--primary);">⏰ Availability</h4>
+                    <p><strong>24/7 Instant Delivery</strong></p>
+                    <p>📧 zippersells@gmail.com.com</p>
+                </div>
+                <div class="payment-methods">
+                    <div class="payment-icon">💳 Visa</div>
+                    <div class="payment-icon">💳 Mastercard</div>
+                    <div class="payment-icon">🅿️ PayPal</div>
+                    <div class="payment-icon">₿ Crypto</div>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="/index.html">Home</a></li>
+                    <li><a href="/cart.html">Shop All Games</a></li>
+                    <li><a href="/index.html">Daily Deals</a></li>
+                    <li><a href="/blogs.html">Blog & News</a></li>
+                    <li><a href="/about.html">About Us</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Categories</h3>
+                <ul class="footer-links">
+                    <li><a href="/index.html">PC Games</a></li>
+                    <li><a href="/index.html">PlayStation</a></li>
+                    <li><a href="/index.html">Xbox</a></li>
+                    <li><a href="/index.html">Nintendo</a></li>
+                    <li><a href="/index.html">Game Currency</a></li>
+                    <li><a href="/index.html">Subscriptions</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Support</h3>
+                <ul class="footer-links">
+                    <li><a href="/Faq.html">FAQ</a></li>
+                    <li><a href="/Faq.html">How to Buy</a></li>
+                    <li><a href="/Faq.html">Refund Policy</a></li>
+                    <li><a href="/Faq.html">Terms of Service</a></li>
+                    <li><a href="/Faq.html">Privacy Policy</a></li>
+                    <li><a href="/Faq.html">Track Order</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 Zipper Sells. All rights reserved. | Trusted by gamers worldwide </p>
+        </div>
+    </footer>
+
+    <!-- <footer>
+        <div class="container">
+            <div class="footer-col">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="#">Our Services</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms & Conditions</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Get Help</h4>
+                <ul>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Shipping</a></li>
+                    <li><a href="#">Returns</a></li>
+                    <li><a href="#">Order Status</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Products</h4>
+                <ul>
+                    <li><a href="#">Steam Cards</a></li>
+                    <li><a href="#">PlayStation Cards</a></li>
+                    <li><a href="#">Xbox Cards</a></li>
+                    <li><a href="#">Nintendo Cards</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Follow Us</h4>
+                <ul>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">Discord</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer> -->
 </body>
 </html>
