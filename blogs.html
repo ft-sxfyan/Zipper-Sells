@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zipper Sells | Blogs</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    :root {
+        --primary: #00d4ff;
+        --primary-dark: #0099cc;
+        --secondary: #ff006e;
+        --accent: #ffbe0b;
+        --dark: #0a0e27;
+        --dark-light: #1a1f3a;
+        --dark-card: #252b48;
+        --text: #ffffff;
+        --text-dark: #1333d1;
+        --success: #06ffa5;
+    }
+
+    body {
+        font-family: 'Poppins', sans-serif;
+        background: var(--dark);
+        color: var(--text);
+        line-height: 1.6;
+        overflow-x: hidden;
+    }
+
+    .animated-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        background: linear-gradient(135deg, var(--dark) 0%, var(--dark-light) 50%, var(--dark) 100%);
+        background-size: 400% 400%;
+        animation: gradient 15s ease infinite;
+    }
+
+    @keyframes gradient {
+        0% { background-position: 0% 50% }
+        50% { background-position: 100% 50% }
+        100% { background-position: 0% 50% }
+    }
+
+    .top-bar {
+        background: rgba(10, 14, 39, 0.95);
+        padding: 12px 0;
+        border-bottom: 2px solid rgba(0, 212, 255, 0.3);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        backdrop-filter: blur(10px);
+    }
+    .top-bar .container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .logo {
+        font-size: 28px;
+        font-weight: bold;
+        background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-decoration: none;
+        animation: glow 3s ease-in-out infinite;
+    }
+    .logo svg {
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: 10px;
+        color: var(--primary);
+        filter: drop-shadow(0 4px 8px rgba(0,212,255,0.15));
+    }
+
+    .logo-text {
+        display: inline-block;
+        vertical-align: middle;
+        font-size: 20px;
+        line-height: 1;
+        color: inherit;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    header {
+        background: transparent;
+        padding: 60px 20px;
+        text-align: center;
+        color: var(--text);
+        position: relative;
+    }
+
+    header h1 {
+        font-size: 3.2rem;
+        letter-spacing: 2px;
+        margin-bottom: 20px;
+        text-transform: uppercase;
+    background: linear-gradient(45deg, var(--primary) 0%, var(--secondary) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+        animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+        from {
+            text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+        }
+        to {
+            text-shadow: 0 0 30px rgba(255, 0, 110, 0.7);
+        }
+    }
+
+    header span {
+        color: var(--primary);
+    }
+
+    nav {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        margin-top: 20px;
+    }
+
+    /* top-bar nav variant */
+    .top-nav {
+        display: flex;
+        gap: 22px;
+        align-items: center;
+    }
+
+    nav a {
+        color: var(--text);
+        text-decoration: none;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        position: relative;
+        padding: 5px 0;
+    }
+
+    nav a::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--primary);
+        transition: width 0.3s ease;
+    }
+
+    nav a:hover::after {
+        width: 100%;
+    }
+
+    nav a:hover {
+        color: var(--primary);
+        text-shadow: 0 0 15px var(--primary);
+    }
+
+    main {
+        width: 90%;
+        max-width: 1200px;
+        margin: 40px auto;
+        position: relative;
+    }
+
+    .blog-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 40px;
+        padding: 20px;
+    }
+
+    .blog-card {
+        background: var(--dark-card);
+        border-radius: 16px;
+        overflow: hidden;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        border: 1px solid rgba(0, 212, 255, 0.1);
+    }
+
+    .blog-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(255, 255, 255, 0.05),
+            transparent
+        );
+        transition: 0.5s;
+    }
+
+    .blog-card:hover::before {
+        left: 100%;
+    }
+
+    .blog-card:hover {
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        border-color: var(--primary);
+    }
+
+    .blog-card img {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+
+    .blog-card:hover img {
+        transform: scale(1.1);
+    }
+
+    .blog-card .content {
+        padding: 25px;
+        position: relative;
+    }
+
+    .blog-card h3 {
+        color: var(--primary);
+        margin-bottom: 15px;
+        font-size: 1.4rem;
+        line-height: 1.4;
+        transition: color 0.3s ease;
+    }
+
+    .blog-card:hover h3 {
+        color: var(--secondary);
+    }
+
+    .blog-card p {
+        font-size: 1rem;
+        color: rgba(255, 255, 255, 0.8);
+        margin-bottom: 20px;
+    }
+
+    .blog-card .read-more {
+        display: inline-block;
+        padding: 8px 20px;
+        background: var(--primary);
+        color: var(--dark);
+        border-radius: 25px;
+        text-decoration: none;
+        font-weight: 500;
+        transition: all 0.3s ease;
+    }
+
+    .blog-card .read-more:hover {
+        background: var(--secondary);
+        transform: translateX(5px);
+    }
+
+    footer {
+        text-align: center;
+        padding: 30px 0;
+        background: var(--dark-light);
+        color: var(--text);
+        font-size: 0.9rem;
+        margin-top: 80px;
+        border-top: 1px solid rgba(0, 212, 255, 0.1);
+    }
+
+    @media (max-width: 768px) {
+        header h1 {
+            font-size: 2.5rem;
+        }
+        
+        .blog-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        nav {
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+    }
+  </style>
+</head>
+<body>
+  <div class="animated-bg"></div>
+  
+     <header class="main-header">
+        <div class="header-content">
+            <a href="#" class="logo">⚡ ZIPPER SELLS</a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="/index.html">Home</a></li>
+                    <li><a href="/index.html">Shop</a></li>
+                    <li><a href="/index.html">Daily Deals</a></li>
+                    <li><a href="#blogs">Blog</a></li>
+                    <li><a href="#about">About Us</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <button class="btn icon-btn" onclick="window.location.href='wishlist.html'">
+                    ❤️
+                    <span class="badge">3</span>
+                </button>
+                <button class="btn icon-btn" onclick="window.location.href='/cart.html'">
+                    🛒
+                    <span class="badge cart-badge">2</span>
+                </button>
+                <button class="btn btn-outline" onclick="openModal('login')">Login</button>
+                <button class="btn btn-primary" onclick="openModal('signup')">Sign Up</button>
+            </div>
+        </div>
+    </header>
+
+  <header>
+    <h1>Zipper <span>Sells</span> Blogs</h1>
+    <p>Stay updated with the latest gaming news and reviews</p>
+  </header>
+
+  <main>
+    <section class="blog-grid">
+      <div class="blog-card">
+        <img src="https://wallpapercave.com/wp/wp9226212.jpg" alt="Fortnite Blog">
+        <div class="content">
+          <h3>Fortnite Chapter 6 Update — New Weapons & Map Leaks</h3>
+          <p>Epic Games brings an explosive update with new weapon balancing, map zones, and exclusive skins. Players can now experience faster matchmaking and new solo events.</p>
+          <a href="#" class="read-more">Read More →</a>
+        </div>
+      </div>
+      <div class="blog-card">
+        <img src="https://images6.alphacoders.com/132/1320882.jpeg" alt="Valorant News">
+        <div class="content">
+          <h3>Valorant's Latest Agent Reveal - Complete Abilities Breakdown</h3>
+          <p>Dive deep into the newest Valorant agent's unique abilities, strategic gameplay implications, and expert tips to master this game-changing addition to the roster.</p>
+          <a href="#" class="read-more">Read More →</a>
+        </div>
+      </div>
+
+      <div class="blog-card">
+        <img src="https://images.alphacoders.com/128/1288444.jpg" alt="CS2 Updates">
+        <div class="content">
+          <h3>Counter-Strike 2: Major Changes and Pro Scene Impact</h3>
+          <p>Analyzing the revolutionary changes in CS2, from improved graphics and physics to how these updates are reshaping professional competitive play.</p>
+          <a href="#" class="read-more">Read More →</a>
+        </div>
+      </div>
+
+      <div class="blog-card">
+        <img src="https://wallpapercave.com/wp/wp11149614.jpg" alt="Gaming Setup Guide">
+        <div class="content">
+          <h3>Ultimate Gaming Setup Guide 2025</h3>
+          <p>From choosing the right peripherals to optimizing your space, discover how to create the perfect gaming setup that enhances both performance and comfort.</p>
+          <a href="#" class="read-more">Read More →</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Zipper Sells. All rights reserved.</p>
+    <nav>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms of Service</a>
+      <a href="contact.html">Contact Us</a>
+    </nav>
+  </footer>
+</body>
+</html>
