@@ -406,18 +406,28 @@
             background: linear-gradient(135deg, var(--dark-light), var(--dark-card));
             box-shadow: 0 20px 60px rgba(0, 212, 255, 0.3);
             border: 2px solid rgba(0, 212, 255, 0.3);
+            min-height: 650px;
         }
 
         .slider-wrapper {
             display: flex;
             transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            position: absolute;
+            width: 100%;
+            height: auto;
+            min-height: 100%;
         }
 
         .slide {
-            min-width: 100%;
+            position: absolute;
+            width: 100%;
             display: flex;
             gap: 20px;
             padding: 40px;
+            transition: all 0.6s ease-in-out;
+            opacity: 0;
+            z-index: 0;
+            height: auto;
         }
 
         .slide-product {
@@ -430,6 +440,10 @@
             transition: all 0.4s;
             position: relative;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            min-height: 520px;
         }
 
         .slide-product::before {
@@ -1311,9 +1325,9 @@
                     <li class="category-item" onclick="filterCategory(this, 'fps')"> ROBUX</li>
                     <li class="category-item" onclick="filterCategory(this, 'rpg')"> VBUX</li>
                     <li class="category-item" onclick="filterCategory(this, 'sports')"> VAL POINTS</li>
-                    <li class="category-item" onclick="filterCategory(this, 'racing')"> LOG</li>
+                    <li class="category-item" onclick="filterCategory(this, 'racing')"> FALL GUYS</li>
                     <li class="category-item" onclick="filterCategory(this, 'puzzle')"> FREE FIRE</li>
-                    <li class="category-item" onclick="filterCategory(this, 'horror')"> PUBG</li>
+                    <li class="category-item" onclick="filterCategory(this, 'horror')"> ROCKET LEAGUE</li>
                     
                 </ul>
             </div>
@@ -1328,54 +1342,54 @@
                         <!-- Slide 1 -->
                         <div class="slide">
                             <div class="slide-product">
-                                <img src="https://image.api.playstation.com/vulcan/ap/rnd/202306/0629/58373b84c0e1f08c9e6dd2b48f7bce29962ac7a4df0e1b63.png" alt="Spider-Man 2">
-                                <h3>Spider-Man 2</h3>
-                                <p>Action-Adventure | PS5</p>
-                                <div class="price">$69.99</div>
-                                <button class="btn btn-primary" onclick="addToCart('Spider-Man 2', 69.99)">Buy Now</button>
+                                <img src="/assets/image/valorent game.jpg" alt="valorent">
+                                <h3>Valorent</h3>
+                                <p>Action-Adventure </p>
+                                <div class="price">Rs6000</div>
+                                <button class="btn btn-primary" onclick="addToCart('Valorent', Rs6000)">Buy Now</button>
                             </div>
                             <div class="slide-product">
-                                <img src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1086940/header.jpg" alt="Baldur's Gate 3">
-                                <h3>Baldur's Gate 3</h3>
-                                <p>RPG | PC/PS5</p>
-                                <div class="price">$59.99</div>
-                                <button class="btn btn-primary" onclick="addToCart('Baldurs Gate 3', 59.99)">Add to Cart</button>
+                                <img src="/assets/image/Rockeleague.jpg" alt="Rocket League">
+                                <h3>Rocket League</h3>
+                                <p>Multiplayer | Competitive</p>
+                                <div class="price">Rs6000</div>
+                                <button class="btn btn-primary" onclick="addToCart('Rocket League', Rs6000)">Add to Cart</button>
                             </div>
                         </div>
 
                         <!-- Slide 2 -->
                         <div class="slide">
                             <div class="slide-product">
-                                <img src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/2358720/header.jpg" alt="Black Myth Wukong">
-                                <h3>Black Myth: Wukong</h3>
-                                <p>Action RPG | PC/PS5</p>
-                                <div class="price">$59.99</div>
-                                <button class="btn btn-primary" onclick="addToCart('Black Myth Wukong', 59.99)">Pre-Order</button>
+                                <img src="/assets/image/Fallguys.jpg" alt="Fall Guys">
+                                <h3>Fall Guys</h3>
+                                <p>Multiplayer | PC/PS5</p>
+                                <div class="price">Rs6000</div>
+                                <button class="btn btn-primary" onclick="addToCart('Fall Guys', Rs6000)">Pre-Order</button>
                             </div>
                             <div class="slide-product">
-                                <img src="https://image.api.playstation.com/vulcan/ap/rnd/202405/2916/82e364181e7cb4d894ce9b1e8c7e77910b3a6d12fbab8d10.jpg" alt="FC 25">
+                                <img src="/assets/image/FC 25.jpg" alt="FC 25">
                                 <h3>EA Sports FC 25</h3>
                                 <p>Sports | Multi-Platform</p>
-                                <div class="price">$69.99</div>
-                                <button class="btn btn-primary" onclick="addToCart('EA Sports FC 25', 69.99)">Buy Now</button>
+                                <div class="price">Rs6000</div>
+                                <button class="btn btn-primary" onclick="addToCart('EA Sports FC 25', Rs6000)">Buy Now</button>
                             </div>
                         </div>
 
                         <!-- Slide 3 -->
                         <div class="slide">
                             <div class="slide-product">
-                                <img src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1245620/header.jpg" alt="Elden Ring">
-                                <h3>Elden Ring</h3>
-                                <p>Action RPG | Multi-Platform</p>
-                                <div class="price">$59.99</div>
-                                <button class="btn btn-primary" onclick="addToCart('Elden Ring', 59.99)">Shop Now</button>
+                                <img src="/assets/image/Minecraft.jpg" alt="Minecraft">
+                                <h3>Minecraft</h3>
+                                <p>Sandbox | Creative</p>
+                                <div class="price">Rs6000</div>
+                                <button class="btn btn-primary" onclick="addToCart('Minecraft', Rs6000)">Buy Now</button>
                             </div>
                             <div class="slide-product">
-                                <img src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/2195250/header.jpg" alt="Starfield">
-                                <h3>Starfield</h3>
-                                <p>RPG | PC/Xbox</p>
-                                <div class="price">$69.99</div>
-                                <button class="btn btn-primary" onclick="addToCart('Starfield', 69.99)">Add to Cart</button>
+                                <img src="/assets/image/Fortnite.jpg" alt="Fortnite">
+                                <h3>Fortnite</h3>
+                                <p>Multiplayer | Battle Royale</p>
+                                <div class="price">Rs6000</div>
+                                <button class="btn btn-primary" onclick="addToCart('Fortnite', Rs6000)">Buy Now</button>
                             </div>
                         </div>
                     </div>
@@ -1570,10 +1584,9 @@
                     <p>📧 support@zippersells.com</p>
                 </div>
                 <div class="payment-methods">
-                    <div class="payment-icon">💳 Visa</div>
-                    <div class="payment-icon">💳 Mastercard</div>
-                    <div class="payment-icon">🅿️ PayPal</div>
-                    <div class="payment-icon">₿ Crypto</div>
+                    <div class="payment-icon">💳 Easy Paisa</div>
+                    <div class="payment-icon">💳 Sada Pay</div>
+                    <div class="payment-icon">💳 Naya Pay</div>
                 </div>
             </div>
 
@@ -1675,9 +1688,21 @@
         const totalSlides = slides.length;
 
         function showSlide(index) {
+            if (index < 0 || index >= totalSlides) return;
+            
             slides.forEach((slide, i) => {
-                slide.style.transform = `translateX(${(i - index) * 100}%)`;
+                if (i === index) {
+                    slide.style.transform = 'translateX(0)';
+                    slide.style.opacity = '1';
+                    slide.style.zIndex = '1';
+                } else {
+                    const offset = i < index ? -100 : 100;
+                    slide.style.transform = `translateX(${offset}%)`;
+                    slide.style.opacity = '0';
+                    slide.style.zIndex = '0';
+                }
             });
+            
             dots.forEach((dot, i) => {
                 dot.classList.toggle('active', i === index);
             });
@@ -1691,7 +1716,7 @@
 
         function prevSlide() {
             const prevIndex = (currentSlide - 1 + totalSlides) % totalSlides;
-            showSlide(prevSlide);
+            showSlide(prevIndex);
         }
 
         function goToSlide(index) {
@@ -1699,7 +1724,12 @@
         }
 
         document.addEventListener('DOMContentLoaded', () => {
+            // Set initial positions
+            slides.forEach((slide, i) => {
+                slide.style.transform = `translateX(${i * 100}%)`;
+            });
             showSlide(0);
+            // Auto-advance every 5 seconds
             setInterval(nextSlide, 5000);
         });
 
