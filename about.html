@@ -25,6 +25,82 @@
             --purple: #a855f7;
             --red: #ff0000;
         }
+        /* Preloader Styles */
+.preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--dark);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+}
+
+.preloader.fade-out {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.zs-loader {
+    font-size: 72px;
+    font-weight: bold;
+    background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    position: relative;
+    animation: zsLoaderPulse 2s ease-in-out infinite;
+}
+
+.zs-loader::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    animation: zsLoaderLine 1.5s ease-in-out infinite;
+    border-radius: 2px;
+}
+
+@keyframes zsLoaderPulse {
+    0%, 100% {
+        transform: scale(1);
+        filter: brightness(1);
+    }
+    50% {
+        transform: scale(1.1);
+        filter: brightness(1.2);
+    }
+}
+
+@keyframes zsLoaderLine {
+    0% {
+        width: 0;
+        left: 0;
+        right: auto;
+    }
+    50% {
+        width: 100%;
+        left: 0;
+        right: auto;
+    }
+    51% {
+        width: 100%;
+        left: auto;
+        right: 0;
+    }
+    100% {
+        width: 0;
+        left: auto;
+        right: 0;
+    }
+}
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -257,134 +333,6 @@
             50% { transform: scale(1.2); }
         }
 
-        /* .animated-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0a0e27 100%);
-            animation: gradientShift 15s ease infinite;
-        }
-
-        @keyframes gradientShift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-
-        .top-bar {
-            background: rgba(10, 14, 39, 0.95);
-            padding: 12px 0;
-            border-bottom: 2px solid rgba(0, 212, 255, 0.3);
-            backdrop-filter: blur(10px);
-        }
-
-        .top-bar .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .tagline {
-            font-size: 14px;
-            color: var(--text-dark);
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
-        }
-
-        .social-links a {
-            color: var(--text);
-            margin-left: 15px;
-            text-decoration: none;
-            transition: all 0.3s;
-            font-size: 18px;
-        }
-
-        .social-links a:hover {
-            color: var(--primary);
-            transform: scale(1.2) rotate(10deg);
-        }
-
-        .breadcrumb {
-            padding: 10px 20px;
-            background: var(--dark-light);
-            margin-bottom: 30px;
-        }
-
-        .breadcrumb a {
-            color: var(--text);
-            text-decoration: none;
-        }
-
-        .breadcrumb span {
-            color: var(--primary);
-            margin: 0 10px;
-        }
-
-        .main-header {
-            background: rgba(10, 14, 39, 0.98);
-            padding: 20px 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            backdrop-filter: blur(20px);
-            box-shadow: 0 4px 30px rgba(0, 212, 255, 0.2);
-            text-align: center;
-        }
-
-        .logo {
-            font-size: 2.5rem;
-            font-weight: bold;
-            color: var(--text);
-            text-decoration: none;
-            display: inline-block;
-            margin-bottom: 15px;
-        }
-
-        .logo span {
-            color: var(--primary);
-        }
-
-        nav {
-            margin-top: 15px;
-        }
-
-        nav a {
-            color: var(--text);
-            text-decoration: none;
-            margin: 0 15px;
-            transition: all 0.3s;
-            font-size: 16px;
-            position: relative;
-        }
-
-        nav a:hover {
-            color: var(--primary);
-        }
-
-        nav a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -5px;
-            left: 0;
-            background-color: var(--primary);
-            transition: width 0.3s ease;
-        }
-
-        nav a:hover::after {
-            width: 100%;
-        } */
 
         .container {
             max-width: 1200px;
@@ -655,60 +603,13 @@
             font-weight: bold;
         }
 
-        /* footer {
-            background: var(--dark-light);
-            color: var(--text);
-            padding: 40px 0;
-            margin-top: 60px;
-        }
-
-        footer .container {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 30px;
-        }
-
-        .footer-col h4 {
-            color: var(--primary);
-            margin-bottom: 20px;
-            font-size: 1.2rem;
-        }
-
-        .footer-col ul {
-            list-style: none;
-        }
-
-        .footer-col ul li {
-            margin-bottom: 10px;
-        }
-
-        .footer-col ul li a {
-            color: var(--text-dark);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .footer-col ul li a:hover {
-            color: var(--primary);
-        }
-
-        @media (max-width: 768px) {
-            .features {
-                grid-template-columns: 1fr;
-            }
-            
-            footer .container {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 480px) {
-            footer .container {
-                grid-template-columns: 1fr; */
             
     </style>
 </head>
 <body>
+    <div class="preloader">
+    <div class="zs-loader">ZS</div>
+</div>
     <div class="animated-bg"></div>
 
     <!-- Top Bar -->
@@ -751,36 +652,6 @@
             </div>
         </div>
     </header>
-    <!-- <div class="animated-bg"></div>
-    <div class="top-bar">
-        <div class="container">
-            <div class="tagline">Your Ultimate Gaming Destination</div>
-            <div class="social-links">
-                <a href="#">Twitter</a>
-                <a href="#">Discord</a>
-                <a href="#">Instagram</a>
-            </div>
-        </div>
-    </div>
-
-    <header class="main-header">
-        <a href="index.html" class="logo">Zipper <span>Sells</span></a>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="blogs.html">Blogs</a>
-            <a href="about.html">About Us</a>
-            <a href="support.html">Support</a>
-        </nav>
-    </header>
-
-    <div class="breadcrumb">
-        <div class="container">
-            <a href="index.html">Home</a>
-            <span>></span>
-            <a href="about.html">About Us</a>
-        </div>
-    </div> -->
-
     <main class="container">
         <section class="about-section">
             <h1>About Us</h1>
@@ -873,46 +744,34 @@
             <p>&copy; 2025 Zipper Sells. All rights reserved. | Trusted by gamers worldwide </p>
         </div>
     </footer>
+<script>
+    // Preloader Handler
+    document.addEventListener('DOMContentLoaded', function() {
+        const preloader = document.querySelector('.preloader');
+        
+        // Hide preloader after page loads
+        window.addEventListener('load', function() {
+            preloader.classList.add('fade-out');
+            setTimeout(() => {
+                preloader.style.display = 'none';
+            }, 500);
+        });
 
-    <!-- <footer>
-        <div class="container">
-            <div class="footer-col">
-                <h4>Company</h4>
-                <ul>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="#">Our Services</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Terms & Conditions</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Get Help</h4>
-                <ul>
-                    <li><a href="#">FAQ</a></li>
-                    <li><a href="#">Shipping</a></li>
-                    <li><a href="#">Returns</a></li>
-                    <li><a href="#">Order Status</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Products</h4>
-                <ul>
-                    <li><a href="#">Steam Cards</a></li>
-                    <li><a href="#">PlayStation Cards</a></li>
-                    <li><a href="#">Xbox Cards</a></li>
-                    <li><a href="#">Nintendo Cards</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Follow Us</h4>
-                <ul>
-                    <li><a href="#">Facebook</a></li>
-                    <li><a href="#">Twitter</a></li>
-                    <li><a href="#">Instagram</a></li>
-                    <li><a href="#">Discord</a></li>
-                </ul>
-            </div>
-        </div>
-    </footer> -->
+        // Show preloader before page unload
+        document.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                // Only handle internal links
+                if (this.href && this.href.startsWith(window.location.origin)) {
+                    e.preventDefault();
+                    preloader.style.display = 'flex';
+                    preloader.classList.remove('fade-out');
+                    setTimeout(() => {
+                        window.location = this.href;
+                    }, 500);
+                }
+            });
+        });
+    });
+</script>
 </body>
 </html>

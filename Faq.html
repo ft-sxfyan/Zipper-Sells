@@ -25,6 +25,82 @@
             --success: #06ffa5;
             --purple: #a855f7;
         }
+    /* Preloader Styles */
+    .preloader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--dark);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+    }
+
+    .preloader.fade-out {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .zs-loader {
+        font-size: 72px;
+        font-weight: bold;
+        background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        position: relative;
+        animation: zsLoaderPulse 2s ease-in-out infinite;
+    }
+
+    .zs-loader::after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: linear-gradient(90deg, var(--primary), var(--secondary));
+        animation: zsLoaderLine 1.5s ease-in-out infinite;
+        border-radius: 2px;
+    }
+
+    @keyframes zsLoaderPulse {
+        0%, 100% {
+            transform: scale(1);
+            filter: brightness(1);
+        }
+        50% {
+            transform: scale(1.1);
+            filter: brightness(1.2);
+        }
+    }
+
+    @keyframes zsLoaderLine {
+        0% {
+            width: 0;
+            left: 0;
+            right: auto;
+        }
+        50% {
+            width: 100%;
+            left: 0;
+            right: auto;
+        }
+        51% {
+            width: 100%;
+            left: auto;
+            right: 0;
+        }
+        100% {
+            width: 0;
+            left: auto;
+            right: 0;
+        }
+    }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -265,13 +341,6 @@
             margin: 0 auto;
             padding: 40px 20px;
         }
-/* 
-    body {
-      background-color: #0b0f19;
-      color: #e0e0e0;
-      line-height: 1.6;
-      overflow-x: hidden;
-    } */
 
     a {
       text-decoration: none;
@@ -283,44 +352,7 @@
       color: #66d9ff;
     }
 
-    /* ===== Navbar ===== */
-    /* nav {
-      background-color: rgba(15, 20, 35, 0.95);
-      padding: 15px 40px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
-      position: sticky;
-      top: 0;
-      z-index: 10;
-    }
-
-    nav h1 {
-      font-size: 1.8rem;
-      color: #00bfff;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    nav ul {
-      display: flex;
-      gap: 25px;
-      list-style: none;
-    }
-
-    nav ul li a {
-      color: #e0e0e0;
-      font-weight: 500;
-      transition: 0.3s;
-    }
-
-    nav ul li a:hover {
-      color: #00bfff;
-      text-shadow: 0 0 8px #00bfff;
-    } */
-
+    
     /* ===== Page Header ===== */
     .page-header {
       text-align: center;
@@ -390,6 +422,9 @@
   </style>
 </head>
 <body>
+  <div class="preloader">
+    <div class="zs-loader">ZS</div>
+</div>
      <div class="animated-bg"></div>
 
     <!-- Top Bar -->
@@ -414,8 +449,8 @@
                     <li><a href="/index.html">Home</a></li>
                     <li><a href="/index.html">Shop</a></li>
                     <li><a href="/index.html">Daily Deals</a></li>
-                    <li><a href="#blogs">Blog</a></li>
-                    <li><a href="#about">About Us</a></li>
+                    <li><a href="/blogs.html">Blog</a></li>
+                    <li><a href="/about.html">About Us</a></li>
                 </ul>
             </nav>
             <div class="header-actions">
@@ -433,16 +468,6 @@
         </div>
     </header>
 
-  <!-- ===== Navbar ===== -->
-  <!-- <nav>
-    <h1>Zipper Sells</h1>
-    <ul>
-      <li><a href="/index.html">Home</a></li>
-      <li><a href="/cart.html">Shop</a></li>
-      <li><a href="/Faq.html" style="color:#00bfff;">Support</a></li>
-
-    </ul>
-  </nav> -->
 
   <!-- ===== Header ===== -->
   <div class="page-header">Support & Help Center</div>
@@ -515,6 +540,34 @@
   <footer>
     © 2025 Zipper Sells. All Rights Reserved.
   </footer>
+<script>
+    // Preloader Handler
+    document.addEventListener('DOMContentLoaded', function() {
+        const preloader = document.querySelector('.preloader');
+        
+        // Hide preloader after page loads
+        window.addEventListener('load', function() {
+            preloader.classList.add('fade-out');
+            setTimeout(() => {
+                preloader.style.display = 'none';
+            }, 500);
+        });
 
+        // Show preloader before page unload
+        document.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                // Only handle internal links
+                if (this.href && this.href.startsWith(window.location.origin)) {
+                    e.preventDefault();
+                    preloader.style.display = 'flex';
+                    preloader.classList.remove('fade-out');
+                    setTimeout(() => {
+                        window.location = this.href;
+                    }, 500);
+                }
+            });
+        });
+    });
+</script>
 </body>
 </html>
