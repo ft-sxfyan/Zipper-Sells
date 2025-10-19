@@ -51,6 +51,46 @@
             text-decoration: none;
             animation: glow 3s ease-in-out infinite;
         }
+        .main-nav {
+            display: flex;
+            gap: 28px;
+            align-items: center;
+            margin-left: 40px;
+        }
+        .main-nav a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 18px;
+            padding: 6px 0;
+            position: relative;
+            transition: color 0.2s;
+        }
+        .main-nav a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -3px;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s;
+        }
+        .main-nav a:hover {
+            color: var(--primary);
+        }
+        .main-nav a:hover::after {
+            width: 100%;
+        }
+        @media (max-width: 900px) {
+            .main-nav {
+                margin-left: 0;
+                gap: 16px;
+            }
+            .main-nav a {
+                font-size: 16px;
+            }
+        }
         @keyframes glow {
             0%, 100% { filter: drop-shadow(0 0 10px rgba(0, 212, 255, 0.5)); }
             50% { filter: drop-shadow(0 0 20px rgba(255, 0, 110, 0.8)); }
@@ -162,20 +202,25 @@
     <div class="main-header">
         <div class="header-content">
             <a href="/index.html" class="logo">Zipper Sells</a>
+            <nav class="main-nav">
+                <a href="/index.html">Home</a>
+                <a href="/blogs.html">Shop</a>
+                <a href="/cart.html">Cart</a>
+            </nav>
             <div class="header-actions">
-                <button class="btn icon-btn" onclick="window.location.href='wishlist.html'">
-                    
+                <button class="btn icon-btn" onclick="window.location.href='/wishlist.html'">
+                    ❤️
                     <span class="wishlist-badge">0</span>
                 </button>
-                <button class="btn icon-btn" onclick="window.location.href='cart.html'">
-                    
+                <button class="btn icon-btn" onclick="window.location.href='/cart.html'">
+                    🛒
                     <span class="cart-badge">0</span>
                 </button>
             </div>
         </div>
     </div>
     <div class="container">
-        <h1 style="margin-bottom: 24px;">My Wishlist</h1>
+        <h1 style="margin-bottom: 24px;">Wishlist</h1>
         <div class="cart-items" id="wishlist-items"></div>
     </div>
     <script>
