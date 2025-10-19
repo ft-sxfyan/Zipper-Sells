@@ -525,6 +525,197 @@
                 justify-content: center;
             }
         }
+         .footer {
+            background: linear-gradient(135deg, var(--dark), var(--dark-light));
+            padding: 70px 0 35px;
+            margin-top: 100px;
+            border-top: 2px solid rgba(0, 212, 255, 0.3);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+
+        .footer-section h3 {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 25px;
+            font-size: 22px;
+        }
+
+        .footer-logo {
+            font-size: 36px;
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+
+        .footer-description {
+            color: white;
+            margin-bottom: 25px;
+            line-height: 1.8;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 14px;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .footer-links a::before {
+            content: '→ ';
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .footer-links a:hover::before {
+            opacity: 1;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+            padding-left: 15px;
+        }
+
+        .availability-hours {
+            background: rgba(0, 212, 255, 0.1);
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 20px;
+            border: 2px solid rgba(0, 212, 255, 0.3);
+        }
+
+        .availability-hours p {
+            margin: 8px 0;
+            font-size: 15px;
+        }
+
+        .payment-methods {
+            display: flex;
+            gap: 12px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+
+        .payment-icon {
+            padding: 12px 18px;
+            background: rgba(0, 212, 255, 0.1);
+            border-radius: 10px;
+            border: 2px solid rgba(0, 212, 255, 0.3);
+            font-size: 14px;
+            color: var(--text);
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .payment-icon:hover {
+            background: rgba(0, 212, 255, 0.2);
+            transform: translateY(-3px);
+            border-color: var(--primary);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 35px;
+            border-top: 2px solid rgba(0, 212, 255, 0.3);
+            color: var(--text-dark);
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .modal.active {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, var(--dark-light), var(--dark-card));
+            padding: 50px;
+            border-radius: 25px;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            border: 2px solid rgba(0, 212, 255, 0.4);
+            box-shadow: 0 20px 60px rgba(0, 212, 255, 0.3);
+            animation: slideUp 0.4s ease;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 32px;
+            cursor: pointer;
+            color: var(--text);
+            transition: all 0.3s;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255, 0, 110, 0.2);
+        }
+
+        .close-modal:hover {
+            color: var(--secondary);
+            transform: rotate(90deg) scale(1.2);
+            background: rgba(255, 0, 110, 0.4);
+        }
+
+        .modal-title {
+            font-size: 32px;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -614,6 +805,67 @@
             </div>
         </div>
     </div>
+ <!-- Footer -->
+    <footer class="footer" id="about">
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="footer-logo">⚡ ZIPPER SELLS</div>
+                <p class="footer-description">
+                    Your trusted destination for digital games, in-game currencies, and gaming subscriptions. We deliver instantly and securely to gamers worldwide.
+                </p>
+                <div class="availability-hours">
+                    <h4 style="margin-bottom: 10px; color: var(--primary);">⏰ Availability</h4>
+                    <p><strong>24/7 Instant Delivery</strong></p>
+                    <p>Support: Mon-Sun 9AM - 11PM</p>
+                    <p>📧 support@zippersells.com</p>
+                </div>
+                <div class="payment-methods">
+                    <div class="payment-icon">💳 Easy Paisa</div>
+                    <div class="payment-icon">💳 Sada Pay</div>
+                    <div class="payment-icon">💳 Naya Pay</div>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="/index.html">Home</a></li>
+                    <li><a href="/index.html">Shop All Games</a></li>
+                    <li><a href="/index.html">Daily Deals</a></li>
+                    <li><a href="/blogs.html">Blog & News</a></li>
+                    <li><a href="/about.html">About Us</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Categories</h3>
+                <ul class="footer-links">
+                    <li><a href="/index.html">PC Games</a></li>
+                    <li><a href="/index.html">PlayStation</a></li>
+                    <li><a href="/index.html">Xbox</a></li>
+                    <li><a href="/index.html">Nintendo</a></li>
+                    <li><a href="/index.html">Game Currency</a></li>
+                    <li><a href="/index.html">Subscriptions</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Support</h3>
+                <ul class="footer-links">
+                    <li><a href="/Faq.html">FAQ</a></li>
+                    <li><a href="/Faq.html">How to Buy</a></li>
+                    <li><a href="/Faq.html">Refund Policy</a></li>
+                    <li><a href="/Faq.html">Terms of Service</a></li>
+                    <li><a href="/Faq.html">Privacy Policy</a></li>
+                    <li><a href="/Faq.html">Track Order</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 Zipper Sells. All rights reserved. | Trusted by gamers worldwide 🌍</p>
+        </div>
+    </footer>
 
     <script>
         // Load cart items from localStorage
