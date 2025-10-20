@@ -11,6 +11,61 @@
     <link rel="stylesheet" href="/about.css">
     <script src="/about.js" defer></script>
 
+    <style>
+    /* Light team section styles (self-contained) */
+    .team-section {
+        background: linear-gradient(180deg, #f5f9ff 0%, #eef6ff 100%);
+        color: #102132;
+        padding: 60px 20px;
+        border-radius: 18px;
+        margin: 40px auto;
+        max-width: 1100px;
+        box-shadow: 0 8px 30px rgba(16,33,50,0.06);
+    }
+    .team-section h2 {
+        text-align: center;
+        font-size: 30px;
+        margin-bottom: 8px;
+        color: #0b3b5a;
+    }
+    .team-section p.lead {
+        text-align: center;
+        color: #40607a;
+        margin-bottom: 28px;
+        font-size: 15px;
+    }
+    .team-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 20px;
+        align-items: stretch;
+    }
+    .team-card {
+        background: #ffffff;
+        border-radius: 14px;
+        padding: 20px;
+        text-align: center;
+        box-shadow: 0 6px 18px rgba(16,33,50,0.06);
+        transition: transform .25s ease, box-shadow .25s ease;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+    }
+    .team-card:hover { transform: translateY(-6px); box-shadow: 0 18px 40px rgba(16,33,50,0.12); }
+    .team-avatar {
+        width: 120px; height: 120px; border-radius: 50%; overflow: hidden; flex-shrink:0;
+        box-shadow: 0 6px 18px rgba(11,59,90,0.12);
+    }
+    .team-avatar img { width: 100%; height: 100%; object-fit: cover; display:block; }
+    .team-name { font-size: 18px; font-weight: 700; color: #07243a; }
+    .team-role { font-size: 13px; color: #4a6b80; margin-bottom: 8px; }
+    .team-bio { font-size: 13px; color: #565f66; line-height: 1.45; }
+    .team-socials { margin-top: auto; display:flex; gap:8px; }
+    .team-socials a { text-decoration:none; color:#0b74b5; font-weight:700; font-size:13px; }
+    @media (max-width:600px) { .team-section { padding: 30px 16px } .team-avatar{width:100px;height:100px} }
+    </style>
+
 </head>
 <body>
     <div class="preloader">
@@ -39,7 +94,7 @@
     <!-- Main Header -->
     <header class="main-header">
         <div class="header-content">
-            <a href="/index.html" class="logo">⚡ ZIPPER SELLS</a>
+            <a href="/index.html" class="logo"><img src = "/assets/image/IMG_1537.jpeg>"></a>
             <nav>
                 <ul class="nav-menu">
                     <li><a href="/index.html">Home</a></li>
@@ -96,6 +151,47 @@
     </main>
 
        <!-- Footer -->
+    
+    <!-- Meet the Team (light theme) -->
+    <section class="team-section">
+        <h2>Meet the Zipper Sells Team</h2>
+        <p class="lead">A small, passionate crew focused on fast delivery, delightful UX, and secure purchases.</p>
+
+        <div class="team-grid">
+            <div class="team-card">
+                <div class="team-avatar"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=400&auto=format&fit=crop&crop=faces" alt="Aisha Khan"></div>
+                <div class="team-name">Aisha Khan</div>
+                <div class="team-role">CEO & Product</div>
+                <div class="team-bio">Visionary product lead who shapes our roadmap and focuses on making purchases effortless for gamers worldwide.</div>
+                <div class="team-socials"><a href="#">Website</a> <a href="#">LinkedIn</a></div>
+            </div>
+
+            <div class="team-card">
+                <div class="team-avatar"><img src="https://images.unsplash.com/photo-1545996124-1f3a79e4f3c7?q=80&w=400&auto=format&fit=crop&crop=faces" alt="Daniel Park"></div>
+                <div class="team-name">Daniel Park</div>
+                <div class="team-role">Lead Engineer</div>
+                <div class="team-bio">Builds and maintains our instant-delivery platform — scaling services, secure payments, and fast automation.</div>
+                <div class="team-socials"><a href="#">GitHub</a> <a href="#">LinkedIn</a></div>
+            </div>
+
+            <div class="team-card">
+                <div class="team-avatar"><img src="https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?q=80&w=400&auto=format&fit=crop&crop=faces" alt="Maya Lopez"></div>
+                <div class="team-name">Maya Lopez</div>
+                <div class="team-role">Head of Design</div>
+                <div class="team-bio">Design lead crafting bright, accessible UI and delightful micro-interactions so buying feels great.</div>
+                <div class="team-socials"><a href="#">Portfolio</a> <a href="#">Dribbble</a></div>
+            </div>
+
+            <div class="team-card">
+                <div class="team-avatar"><img src="https://images.unsplash.com/photo-1541532683-7b8a6b32e1f6?q=80&w=400&auto=format&fit=crop&crop=faces" alt="Omar Rizvi"></div>
+                <div class="team-name">Omar Rizvi</div>
+                <div class="team-role">Support & Community</div>
+                <div class="team-bio">Community-first support lead — gamer-friendly help, fast replies, and helpful purchase guidance.</div>
+                <div class="team-socials"><a href="#">Support</a> <a href="#">Twitter</a></div>
+            </div>
+        </div>
+    </section>
+
     <footer class="footer" id="about">
         <div class="footer-content">
             <div class="footer-section">
