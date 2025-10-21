@@ -12,8 +12,8 @@
             --dark: #f6fbfd;
             --dark-light: #e8f4f5;
             --dark-card: #ffffff;
-            --text: #0b3140;
-            --text-dark: #4a6b7a;
+            --text: #000000;
+            --text-dark: #000000;
             --success: #06ffa5;
             --purple: #7c5cff;
             --red: #ff4d4d;
@@ -124,6 +124,7 @@
             padding: 12px 0;
             border-bottom: 2px solid rgba(0, 212, 255, 0.3);
             backdrop-filter: blur(10px);
+            
         }
 
         .top-bar .container {

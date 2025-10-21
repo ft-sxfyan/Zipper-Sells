@@ -12,7 +12,7 @@
             --dark: #0a0e27;
             --dark-light: #1a1f3a;
             --dark-card: #252b48;
-            --text: #ffffff;
+            --text: #929292;
             --text-dark: #b8c1ec;
             --success: #06ffa5;
             --purple: #a855f7;
@@ -934,7 +934,7 @@
         }
 
         .footer-description {
-            color: white;
+            color: rgb(255, 255, 255);
             margin-bottom: 25px;
             line-height: 1.8;
         }
