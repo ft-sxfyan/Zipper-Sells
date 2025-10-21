@@ -181,7 +181,7 @@
             flex-wrap: wrap;
         }
 
-        .logo {
+        /* .logo {
             font-size: 32px;
             font-weight: bold;
             background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
@@ -190,7 +190,14 @@
             -webkit-text-fill-color: transparent;
             text-decoration: none;
             animation: glow 3s ease-in-out infinite;
-        }
+        } */
+         .logo{
+            width: 150px;
+            height: 100px;
+            margin-right: 150px;
+            object-fit: contain;
+         }
+    
 
         @keyframes glow {
             0%, 100% { filter: drop-shadow(0 0 10px rgba(0, 212, 255, 0.5)); }

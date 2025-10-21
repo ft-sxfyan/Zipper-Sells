@@ -7,7 +7,7 @@
      <link rel="icon" href="https://zippersells.com/wp-content/uploads/2024/07/cropped-ZipperSells-Favicon-192x192.webp" sizes="192x192">
      <link rel="apple-touch-icon" href="https://zippersells.com/wp-content/uploads/2024/07/cropped-ZipperSells-Favicon-180x180.webp">
      <link rel="stylesheet" href="/index.css">
-     <script src="/index.js" defer></script>
+     <link rel="stylesheet" href="/src/style/auth.css">
     <title>Zipper Sells - Your Ultimate Gaming Store</title>
 </head>
 <body>
@@ -19,7 +19,7 @@
    <!-- Top Bar -->
 <div class="top-bar">
   <div class="container">
-    <div class="tagline">🎮 Level Up Your Gaming Experience - Instant Digital Delivery 24/7</div>
+    <div class="tagline"> Level Up Your Gaming Experience - Instant Digital Delivery 24/7</div>
     <div class="social-links">
       <a href="https://www.instagram.com/zipper_sells?igsh=a3NnZXp4dHJibDcx" title="Instagram">
         <img src="/assets/image/instagram.png" alt="Instagram" class="social-icon">
@@ -37,7 +37,7 @@
     <!-- Main Header -->
     <header class="main-header">
         <div class="header-content">
-            <a href="/index.html" class="logo"><img src = "/assets/image/Black Beige Minimalist Game  Console Logo.png"></a>
+            <a href="/index.html" class="logo"> <img src="/assets/image/Zipper-sells-logo.png" alt="Zipper Sells Logo"></a>
             <nav>
                 <ul class="nav-menu">
                     <li><a href="/index.html">Home</a></li>
@@ -49,12 +49,12 @@
             </nav>
             <div class="header-actions">
                <button class="btn icon-btn" onclick="window.location.href='/wishlist.html'">
-                    ❤️
-                    <span class="wishlist-badge">0</span>
+                    Wishlist
+                    <!-- <span class="wishlist-badge">0</span> -->
                 </button>
                 <button class="btn icon-btn" onclick="window.location.href='/cart.html'">
-                    🛒
-                    <span class="cart-badge">0</span>
+                    Cart
+                    <!-- <span class="cart-badge">0</span> -->
                 </button>
                 <div id="auth-area" style="display:flex; gap:10px; align-items:center;">
                     <button class="btn btn-outline" onclick="openModal('login')">Login</button>
@@ -73,7 +73,7 @@
         <!-- Sidebar -->
         <aside class="sidebar">
             <div class="sidebar-section">
-                <h3 class="sidebar-title">🎮 Services Categories</h3>
+                <h3 class="sidebar-title"> Services Categories</h3>
                 <ul class="category-list">
                     <li class="category-item active" onclick="filterCategory(this, 'all')">🎮 All Games Services</li>
                     <li class="category-item" onclick="filterCategory(this, 'fps')"> ROBUX</li>
@@ -177,7 +177,7 @@
             <!-- Daily Deals Section -->
             <section class="section-wrapper" id="daily-deals">
                 <div class="section-header">
-                    <h2 class="section-title">🔥 Daily Deals</h2>
+                    <h2 class="section-title"> Daily Deals</h2>
                     
                 </div>
                 <div class="products-grid">
@@ -231,7 +231,7 @@
             <!-- In-Game Currency Section -->
             <section class="currency-section" id="shop">
                 <div class="section-header">
-                    <h2 class="section-title">💎 In-Game Currencies</h2>
+                    <h2 class="section-title"> In-Game Currencies</h2>
                 </div>
                 <div class="currency-grid">
                     <div class="currency-card">
@@ -296,7 +296,7 @@
 
             <!-- Platform Logos -->
             <section class="platforms-section">
-                <h2 class="section-title">🎮 Available Platforms</h2>
+                <h2 class="section-title">Available Platforms</h2>
                 <div class="platforms-grid">
                     <div class="platform-logo">
                         <img src="/assets/image/ps.png" alt="PlayStation">
@@ -327,7 +327,7 @@
     <footer class="footer" id="about">
         <div class="footer-content">
             <div class="footer-section">
-                <div class="footer-logo">⚡ ZIPPER SELLS</div>
+                <div class="footer-logo"> ZIPPER SELLS</div>
                 <p class="footer-description">
                     Your trusted destination for digital games, in-game currencies, and gaming subscriptions. We deliver instantly and securely to gamers worldwide.
                 </p>
@@ -386,301 +386,182 @@
             <p>&copy; 2025 Zipper Sells. All rights reserved. | Trusted by gamers worldwide 🌍</p>
         </div>
     </footer>
-
-    <!-- Login Modal -->
-    <div class="modal" id="loginModal">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeModal('login')">&times;</span>
-            <h2 class="modal-title">🔐 Login</h2>
-            <form id="loginForm">
-                <div class="form-group">
-                    <label>Email Address</label>
-                    <input type="email" placeholder="Enter your email" required>
+<div class="modal" id="loginModal">
+    <div class="modal-content">
+        <span class="close-modal" onclick="closeModal('login')">&times;</span>
+        <h2 class="modal-title">Login</h2>
+        <form id="loginForm" onsubmit="handleLogin(event)">
+            <div class="form-group">
+                <label for="loginEmail">Email Address</label>
+                <input 
+                    type="email" 
+                    id="loginEmail" 
+                    name="email" 
+                    placeholder="Enter your email"
+                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                    required
+                >
+                <div class="error-message" id="loginEmailError"></div>
+            </div>
+            <div class="form-group">
+                <label for="loginPassword">Password</label>
+                <div class="password-input-wrapper">
+                    <input 
+                        type="password" 
+                        id="loginPassword" 
+                        name="password"
+                        placeholder="Enter your password"
+                        minlength="8"
+                        required
+                    >
+                    <button type="button" class="toggle-password" onclick="togglePasswordVisibility('loginPassword')">
+                        👁️
+                    </button>
                 </div>
-                <div class="form-group">
-                    <label>Password</label>
-                    <input type="password" placeholder="Enter your password" required>
-                </div>
-                <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;">Login</button>
-                <p style="text-align: center; margin-top: 20px; color: var(--text-dark);">
-                    Don't have an account? <a href="#" onclick="closeModal('login'); openModal('signup')" style="color: var(--primary);">Sign Up</a>
-                </p>
-            </form>
-        </div>
+                <div class="error-message" id="loginPasswordError"></div>
+            </div>
+            <div class="form-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" name="remember"> Remember me
+                </label>
+                <a href="#" class="forgot-password" onclick="showForgotPassword(event)">Forgot Password?</a>
+            </div>
+            <button type="submit" class="btn btn-primary">Login</button>
+            <div class="form-divider">
+                <span>OR</span>
+            </div>
+            <div class="social-login">
+                <button type="button" class="btn btn-google" onclick="socialLogin('google')">
+                    <img src="/assets/image/google.jpeg" alt="Google"> Continue with Google
+                </button>
+            </div>
+        </form>
     </div>
+</div>
 
-    <!-- Signup Modal -->
-    <div class="modal" id="signupModal">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeModal('signup')">&times;</span>
-            <h2 class="modal-title">🎮 Sign Up</h2>
-            <form id="signupForm">
+  <div class="modal" id="signupModal">
+    <div class="modal-content">
+        <span class="close-modal" onclick="closeModal('signup')">&times;</span>
+        <h2 class="modal-title">Create Account</h2>
+        <form id="signupForm" onsubmit="handleSignup(event)">
+            <!-- Personal Information -->
+            <div class="form-section">
+                <h3>Personal Information</h3>
                 <div class="form-group">
-                    <label>Full Name</label>
-                    <input type="text" placeholder="Enter your name" required>
+                    <label for="signupFullName">Full Name</label>
+                    <input 
+                        type="text" 
+                        id="signupFullName" 
+                        name="fullName" 
+                        placeholder="Enter your full name"
+                        minlength="2"
+                        required
+                    >
+                    <div class="error-message" id="fullNameError"></div>
                 </div>
                 <div class="form-group">
-                    <label>Email Address</label>
-                    <input type="email" placeholder="Enter your email" required>
+                    <label for="signupUsername">Username</label>
+                    <input 
+                        type="text" 
+                        id="signupUsername" 
+                        name="username" 
+                        placeholder="Choose a username"
+                        pattern="[a-zA-Z0-9_]{3,20}"
+                        required
+                    >
+                    <div class="error-message" id="usernameError"></div>
                 </div>
                 <div class="form-group">
-                    <label>Password</label>
-                    <input type="password" placeholder="Create a password" required>
+                    <label for="signupEmail">Email Address</label>
+                    <input 
+                        type="email" 
+                        id="signupEmail" 
+                        name="email" 
+                        placeholder="Enter your email"
+                        required
+                    >
+                    <div class="error-message" id="emailError"></div>
                 </div>
-                <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;">Create Account</button>
-                <p style="text-align: center; margin-top: 20px; color: var(--text-dark);">
-                    Already have an account? <a href="#" onclick="closeModal('signup'); openModal('login')" style="color: var(--primary);">Login</a>
-                </p>
-            </form>
-        </div>
+            </div>
+
+            <!-- Password Section -->
+            <div class="form-section">
+                <h3>Security</h3>
+                <div class="form-group">
+                    <label for="signupPassword">Password</label>
+                    <div class="password-input-wrapper">
+                        <input 
+                            type="password" 
+                            id="signupPassword" 
+                            name="password"
+                            placeholder="Create a strong password"
+                            minlength="8"
+                            required
+                        >
+                        <button type="button" class="toggle-password" onclick="togglePasswordVisibility('signupPassword')">
+                            👁️
+                        </button>
+                    </div>
+                    <div class="password-strength" id="passwordStrength"></div>
+                    <div class="error-message" id="passwordError"></div>
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <div class="password-input-wrapper">
+                        <input 
+                            type="password" 
+                            id="confirmPassword" 
+                            name="confirmPassword"
+                            placeholder="Confirm your password"
+                            required
+                        >
+                        <button type="button" class="toggle-password" onclick="togglePasswordVisibility('confirmPassword')">
+                            👁️
+                        </button>
+                    </div>
+                    <div class="error-message" id="confirmPasswordError"></div>
+                </div>
+            </div>
+
+            <!-- Terms and Newsletter -->
+            <div class="form-section">
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="terms" required>
+                        I agree to the <a href="/terms.html" target="_blank">Terms of Service</a> and 
+                        <a href="/privacy.html" target="_blank">Privacy Policy</a>
+                    </label>
+                    <div class="error-message" id="termsError"></div>
+                </div>
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="newsletter" checked>
+                        Subscribe to newsletter for deals and updates
+                    </label>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Create Account</button>
+            
+            <div class="form-divider">
+                <span>OR</span>
+            </div>
+
+            <div class="social-signup">
+                <button type="button" class="btn btn-google" onclick="socialSignup('google')">
+                    <img src="/assets/image/google-icon.png" alt="Google">
+                    Sign up with Google
+                </button>
+                <button type="button" class="btn btn-discord" onclick="socialSignup('discord')">
+                    <img src="/assets/image/discord-icon.png" alt="Discord">
+                    Sign up with Discord
+                </button>
+            </div>
+        </form>
     </div>
-
-    <script>
-        // Slider functionality
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.slide');
-        const dots = document.querySelectorAll('.dot');
-        const totalSlides = slides.length;
-
-        function showSlide(index) {
-            if (index < 0 || index >= totalSlides) return;
-            
-            slides.forEach((slide, i) => {
-                if (i === index) {
-                    slide.style.transform = 'translateX(0)';
-                    slide.style.opacity = '1';
-                    slide.style.zIndex = '1';
-                } else {
-                    const offset = i < index ? -100 : 100;
-                    slide.style.transform = `translateX(${offset}%)`;
-                    slide.style.opacity = '0';
-                    slide.style.zIndex = '0';
-                }
-            });
-            
-            dots.forEach((dot, i) => {
-                dot.classList.toggle('active', i === index);
-            });
-            currentSlide = index;
-        }
-
-        function nextSlide() {
-            const nextIndex = (currentSlide + 1) % totalSlides;
-            showSlide(nextIndex);
-        }
-
-        function prevSlide() {
-            const prevIndex = (currentSlide - 1 + totalSlides) % totalSlides;
-            showSlide(prevIndex);
-        }
-
-        function goToSlide(index) {
-            showSlide(index);
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            // Set initial positions
-            slides.forEach((slide, i) => {
-                slide.style.transform = `translateX(${i * 100}%)`;
-            });
-            showSlide(0);
-            // Auto-advance every 5 seconds
-            setInterval(nextSlide, 5000);
-        });
-
-        // Filter functionality
-        function filterCategory(element, category) {
-            const items = document.querySelectorAll('.product-card');
-            const allCategories = document.querySelectorAll('.category-item');
-
-            allCategories.forEach(item => {
-                item.classList.remove('active');
-            });
-            element.classList.add('active');
-
-            items.forEach(item => {
-                if (category === 'all' || item.classList.contains(category)) {
-                    item.style.display = 'block';
-                } else {
-                    item.style.display = 'none';
-                }
-            });
-        }
-
-        // Modal functionality
-        function openModal(modalId) {
-            const modal = document.getElementById(modalId + 'Modal');
-            modal.classList.add('active');
-        }
-
-        function closeModal(modalId) {
-            const modal = document.getElementById(modalId + 'Modal');
-            modal.classList.remove('active');
-        }
-
-        // Add to Cart functionality (mock)
-        function addToCart(productName, price) {
-            alert(`Added ${productName} - $${price} to cart!`);
-        }
-
-        function removeFromCart(gameName) {
-            let cart = JSON.parse(localStorage.getItem('cart')) || [];
-            cart = cart.filter(item => item.name !== gameName);
-            localStorage.setItem('cart', JSON.stringify(cart));
-            location.reload();
-        }
-        // Example usage for Remove button:
-        // <button onclick="removeFromCart('Game Name')">Remove</button>
-
-        function addToCart(gameName, price) {
-            let cart = JSON.parse(localStorage.getItem('cart')) || [];
-            // Check if game already exists in cart
-            const existing = cart.find(item => item.name === gameName);
-            if (existing) {
-                existing.quantity += 1;
-            } else {
-                cart.push({ name: gameName, price: price, quantity: 1 });
-            }
-            localStorage.setItem('cart', JSON.stringify(cart));
-            updateCartBadge();
-        }
-
-        function updateCartBadge() {
-            let cart = JSON.parse(localStorage.getItem('cart')) || [];
-            const badge = document.querySelector('.cart-badge');
-            if (badge) {
-                badge.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
-                badge.classList.add('cart-badge-pop');
-                setTimeout(() => badge.classList.remove('cart-badge-pop'), 400);
-            }
-        }
-
-        function addToWishlist(gameName, price, image, category) {
-            let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
-            const existing = wishlist.find(item => item.name === gameName);
-            if (!existing) {
-                wishlist.push({ name: gameName, price: price, image: image, category: category });
-                localStorage.setItem('wishlist', JSON.stringify(wishlist));
-                updateWishlistBadge();
-            }
-        }
-
-        function removeFromWishlist(gameName) {
-            let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
-            wishlist = wishlist.filter(item => item.name !== gameName);
-            localStorage.setItem('wishlist', JSON.stringify(wishlist));
-            updateWishlistBadge();
-            // Optionally, update UI or reload if you have a wishlist section on this page
-        }
-
-        function updateWishlistBadge() {
-            let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
-            const badge = document.querySelector('.wishlist-badge');
-            if (badge) {
-                badge.textContent = wishlist.length;
-                badge.classList.add('cart-badge-pop');
-                setTimeout(() => badge.classList.remove('cart-badge-pop'), 400);
-            }
-        }
-
-        window.onload = function() {
-            updateCartBadge();
-            updateWishlistBadge();
-        };
-    </script>
-    <script>
-        // Simple account persistence using localStorage
-        (function () {
-            const ACCOUNT_KEY = 'user';
-
-            function showAccountUI() {
-                const user = JSON.parse(localStorage.getItem(ACCOUNT_KEY));
-                const authArea = document.getElementById('auth-area');
-                const accountArea = document.getElementById('account-area');
-                const accountName = document.getElementById('account-name');
-                if (!authArea || !accountArea || !accountName) return;
-                if (user && user.name) {
-                    authArea.style.display = 'none';
-                    accountName.textContent = user.name;
-                    accountArea.style.display = 'flex';
-                } else {
-                    authArea.style.display = 'flex';
-                    accountArea.style.display = 'none';
-                }
-            }
-
-            // Signup form: store name and email
-            const signupForm = document.getElementById('signupForm');
-            if (signupForm) {
-                signupForm.addEventListener('submit', function (e) {
-                    e.preventDefault();
-                    const nameInput = signupForm.querySelector('input[type="text"]');
-                    const emailInput = signupForm.querySelector('input[type="email"]');
-                    const name = (nameInput && nameInput.value.trim()) || 'User';
-                    const email = (emailInput && emailInput.value.trim()) || '';
-                    const user = { name: name, email: email };
-                    localStorage.setItem(ACCOUNT_KEY, JSON.stringify(user));
-                    closeModal('signup');
-                    showAccountUI();
-                });
-            }
-
-            // Login form: simulate login by email
-            const loginForm = document.getElementById('loginForm');
-            if (loginForm) {
-                loginForm.addEventListener('submit', function (e) {
-                    e.preventDefault();
-                    const emailInput = loginForm.querySelector('input[type="email"]');
-                    const email = (emailInput && emailInput.value.trim()) || '';
-                    const name = email ? email.split('@')[0] : 'User';
-                    const user = { name: name, email: email };
-                    localStorage.setItem(ACCOUNT_KEY, JSON.stringify(user));
-                    closeModal('login');
-                    showAccountUI();
-                });
-            }
-
-            // Logout
-            const logoutBtn = document.getElementById('logout-btn');
-            if (logoutBtn) {
-                logoutBtn.addEventListener('click', function () {
-                    localStorage.removeItem(ACCOUNT_KEY);
-                    showAccountUI();
-                });
-            }
-
-            // Initialize
-            document.addEventListener('DOMContentLoaded', showAccountUI);
-        })();
-    </script>
-    <script>
-    // Preloader Handler
-    document.addEventListener('DOMContentLoaded', function() {
-        const preloader = document.querySelector('.preloader');
-        
-        // Hide preloader after page loads
-        window.addEventListener('load', function() {
-            preloader.classList.add('fade-out');
-            setTimeout(() => {
-                preloader.style.display = 'none';
-            }, 500);
-        });
-
-        // Show preloader before page unload
-        document.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', function(e) {
-                // Only handle internal links
-                if (this.href && this.href.startsWith(window.location.origin)) {
-                    e.preventDefault();
-                    preloader.style.display = 'flex';
-                    preloader.classList.remove('fade-out');
-                    setTimeout(() => {
-                        window.location = this.href;
-                    }, 500);
-                }
-            });
-        });
-    });
-</script>s
+</div>
+<script src="/src/services/auth.js"></script>
+<script src="/src/js/auth.js"></script>
+<script src="/index.js" defer></script>
 </body>
 </html>
